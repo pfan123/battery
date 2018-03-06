@@ -17,7 +17,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'public': path.resolve(__dirname, '../public')
+      'public': path.resolve(__dirname, '../public'),
+      'vue': 'vue/dist/vue.common.js'
     }
   },
   module: {
@@ -42,13 +43,13 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
+        test: /\.styl$/,
         use: isProd
           ? ExtractTextPlugin.extract({
-              use: 'css-loader?minimize',
+              use: ['css-loader?minimize', 'postcss-loader?sourceMap=true', 'stylus-loader'],
               fallback: 'vue-style-loader'
             })
-          : ['vue-style-loader', 'css-loader']
+          : ['vue-style-loader', 'css-loader', 'postcss-loader?sourceMap=true', 'stylus-loader']
       }
     ]
   },
@@ -58,9 +59,9 @@ module.exports = {
   },
   plugins: isProd
     ? [
-        new webpack.optimize.UglifyJsPlugin({
-          compress: { warnings: false }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //   compress: { warnings: false }
+        // }),
         new ExtractTextPlugin({
           filename:  (getPath) => {
             return getPath('common.[chunkhash].css').replace('css/js', 'css');

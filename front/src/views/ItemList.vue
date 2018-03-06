@@ -1,6 +1,6 @@
 <template>
   <div class="news-view">
-    <div class="news-list-nav">
+    <div class="news-list-nav" style="display:none">
       <router-link v-if="page > 1" :to="'/' + type + '/' + (page - 1)">&lt; prev</router-link>
       <a v-else class="disabled">&lt; prev</a>
       <span>{{ page }}/{{ maxPage }}</span>
@@ -122,7 +122,7 @@ export default {
     color #ccc
 
 .news-list
-  position absolute
+  // position absolute
   margin 30px 0
   width 100%
   transition all .5s cubic-bezier(.55,0,.1,1)

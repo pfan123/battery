@@ -20,6 +20,23 @@ const app = new Koa()
 const router = require('koa-router')()
 const bodyParser = require('koa-bodyparser')  
 const logger = require('koa-logger')  
+const config = require('./sqConfig.js')
+const session = require('koa-session-minimal')
+const MysqlStore = require('koa-mysql-session')
+
+// session存储配置
+const sessionMysqlConfig= {
+  user: config.database.USERNAME,
+  password: config.database.PASSWORD,
+  database: config.database.DATABASE,
+  host: config.database.HOST,
+}
+
+// 配置session中间件
+app.use(session({
+  key: 'USER_SID',
+  store: new MysqlStore(sessionMysqlConfig)
+}))
 
 const readFile = (path, cb) => {
   return new Promise( (resolve, reject) => {
@@ -115,9 +132,12 @@ function render (ctx, next, resolve) {
     })() 
   // }
 }
+const userInfoController = require('./controllers/user-info')
+router.get('/user/getUserInfo.json', userInfoController.getLoginUserInfo )
+router.post('/user/signIn.json', userInfoController.signIn )
 
 if (isProd) {
-  router.get('*', (ctx, next) => {
+  router.get('/', (ctx, next) => {
       return new Promise( (resolve, reject) => {
         render(ctx, next, resolve)
       })
@@ -125,7 +145,6 @@ if (isProd) {
 } else {
   const s = Date.now()
   // In development: setup the dev server with watch and hot-reload,
-
   readyPromise = require('./build/koa-setup-server')(app, serve, () => {
     console.log(`整个服务端渲染的耗时 whole request: ${Date.now() - s}ms`)
   })
@@ -135,7 +154,7 @@ app
 .use(router.routes())
 .use(router.allowedMethods());
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8180
 app.listen(port, () => {
   opn('http://localhost:' + port)
   console.log(`server started at localhost:${port}`)

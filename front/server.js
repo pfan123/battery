@@ -4,7 +4,7 @@ const LRU = require('lru-cache')  //内存键值对存储管理
 const favicon = require('koa-favicon')
 const resolve = file => path.resolve(__dirname, file)
 const { createBundleRenderer } = require('vue-server-renderer')
-const sendGoogleAnalytic = require('./middleware/serverGoogleAnalytic')
+// const sendGoogleAnalytic = require('./middleware/serverGoogleAnalytic')
 
 const isProd = process.env.NODE_ENV === 'production'
 const useMicroCache = process.env.MICRO_CACHE !== 'false'

@@ -1,23 +1,33 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+    <router-view :username="userName"></router-view>
   </div>
 </template>
 
 <script>
 export default {
   name: 'app',
-};
-</script>
+  data() {
+    return {
+      userName: ''
+    }
+  },
+  beforeCreate() {
+    //判断是否登陆跳转
+    this.$http.get('/user/getUserInfo.json').then( ({ data }) => {
+      if(data.data){
+        this.userName = data.data.userName
+        this.$router.push({ path: '/dashboard' })
+      }
+    }).catch((err) => {
+        this.$router.push({ name: 'Login' })
+    })
+  },
+  mounted() {
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  },
+  methods: {
+
+  }  
 }
-</style>
+</script>

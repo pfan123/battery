@@ -3,7 +3,7 @@ module.exports = {
   preserveWhitespace: false,
   postcss: [
     require('autoprefixer')({
-      browsers: ['last 3 versions']
+      browsers: ["> 5%", "last 2 versions", "ie >= 8"]
     })
   ]
 }
