@@ -20,7 +20,7 @@ const app = new Koa()
 const router = require('koa-router')()
 const bodyParser = require('koa-bodyparser')  
 const logger = require('koa-logger')  
-const config = require('./sqConfig.js')
+const config = require('./sysConfig.js')
 const session = require('koa-session-minimal')
 const MysqlStore = require('koa-mysql-session')
 
@@ -154,7 +154,7 @@ app
 .use(router.routes())
 .use(router.allowedMethods());
 
-const port = process.env.PORT || 8180
+const port = config.port || 8180
 app.listen(port, () => {
   opn('http://localhost:' + port)
   console.log(`server started at localhost:${port}`)

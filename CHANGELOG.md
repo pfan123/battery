@@ -2,6 +2,11 @@
 #  (2018-03-06)
 
 
+### Bug Fixes
+
+* **o2Blog:** install transform-runtime polyfill ([8fec04f](https://github.com/pfan123/o2Blog/commit/8fec04f))
+
+
 ### Features
 
 * **battery:** developed admin front ([3c7e029](https://github.com/pfan123/o2Blog/commit/3c7e029))

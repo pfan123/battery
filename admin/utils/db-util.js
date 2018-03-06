@@ -1,4 +1,4 @@
-const allConfig = require("../sqConfig")
+const allConfig = require("../sysConfig")
 const config = allConfig.database
 const mysql = require("mysql")
 
