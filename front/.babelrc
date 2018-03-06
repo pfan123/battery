@@ -4,5 +4,9 @@
   ],
   "plugins": [
     "syntax-dynamic-import"
+<<<<<<< HEAD
   ]  
+=======
+  ]
+>>>>>>> 8fec04f2ffc39f8e5b3139b8b347a749d8200afe
 }
