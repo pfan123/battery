@@ -1,13 +1,13 @@
 <template>
   <div class="header" v-show="!hide">
     <div class="header_inner">
-      <h2 class="header_logo"><a href="/">深圳绿行科技有限公司</a></h2>
+      <h2 class="header_logo"><a href="/"><img :src="logo" alt=""><span>深圳绿行科技有限公司</span></a></h2>
     </div>
     <ul class="header_nav g_cf">
-        <li v-for = "item in menu"  :class="[route == item.link ? 'cur': '']"> 
+        <li v-for = "item in menu"  :class="[route == item.name ? 'cur': '']"> 
           <a :href="item.link" class="header_nav_a">{{isEnglish ? item.ftitle : item.title}}</a>
         </li>
-        <li class="tap_lang" v-on:click="tapLang"><i :class="[isEnglish ? 'icon eng':'icon']"></i>{{isEnglish ? 'English' : '中文'}}</li>
+        <li class="tap_lang" @click="tapLang"><i :class="[isEnglish ? 'icon eng':'icon']"></i>{{isEnglish ? 'English' : '中文'}}</li>
     </ul>    
   </div>
 </template>
@@ -17,23 +17,28 @@ import {throttle} from '../../util/utils.js'
 
 export default {
   name: 'bat-header',
-
   data() {
       return {
         hide: false,
         route: 'index',
-        isEnglish: true,
         menu: [
-          { title: '主页', ftitle: 'HOME', link: 'index'},
-          { title: '产品中心', ftitle: 'Products', link: 'products'},
-          { title: '新闻中心', ftitle: 'News Center', link: 'news'},
-          { title: '关于我们', ftitle: 'About Us', link: 'aboutus'},
-          { title: '联系我们', ftitle: 'Contact Us', link: 'contactus'},
-          { title: '疑难解答', ftitle: 'FAQ', link: 'faq'},
+          { title: '主页', ftitle: 'HOME', name: 'home', link: '/index'},
+          { title: '产品中心', ftitle: 'Products', name: 'product', link: '/products'},
+          { title: '新闻中心', ftitle: 'News Center', name: 'news', link: '/news'},
+          { title: '关于我们', ftitle: 'About Us', name: 'about', link: '/aboutus'},
+          { title: '联系我们', ftitle: 'Contact Us', name: 'contact', link: '/contactus'},
+          { title: '疑难解答', ftitle: 'FAQ', name: 'faq', link: '/faq'},
         ]
       }
   },
-
+  computed: {
+    logo () {
+      return this.$store.getters.sysInfo.logo1
+    },
+    isEnglish () {
+      return this.$store.getters.getIsEnglish     
+    }
+  },
   components: {
 
   },
@@ -50,12 +55,17 @@ export default {
         }else{
           this.hide = false
         }      
-    }, 300, false), false)
+    }, 200, false), false)
+    if(localStorage.getItem('local_isEnglish')){
+      this.$store.commit("SET_ISENGLISH", JSON.parse(localStorage.getItem('local_isEnglish')).isEnglish)
+    }
   },
 
   methods: {
     tapLang(){
-      this.isEnglish = !this.isEnglish
+      let bool = !this.isEnglish
+      this.$store.commit("SET_ISENGLISH", bool)
+      localStorage.setItem('local_isEnglish', JSON.stringify({'isEnglish':  bool}))
     }
   }
 }
@@ -75,17 +85,26 @@ export default {
     margin 0 auto
     width 1135px
     min-width 1135px
-    overflow hidden
   .header_logo
     padding-top 19px
     a
       width 390px
       height 48px
-      background url('http://temp.im/390x48') no-repeat
       background-size 100% auto
       display block
       cursor pointer
-      text-indent -9999px
+      overflow hidden
+      position relative
+      span 
+        line-height 200px
+        text-indent -9999px
+      img 
+        position absolute
+        width 100% 
+        height 100%
+        top 0
+        left 0
+        
   .header_nav
     position absolute
     right 0

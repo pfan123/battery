@@ -1,6 +1,17 @@
 import { createApp } from './app'
+import axios from 'axios'
 
 const isDev = process.env.NODE_ENV !== 'production'
+const host = "http://127.0.0.1:8180"
+// axios.get(`${host}/api/dashboard/getSysInfo.json`).then( res => {
+//   if(res.status == 200){
+//     console.log("resres", res.data)
+//   }
+// }).catch(function (error) {
+//   console.log(error);
+// });
+
+let getinfo = axios.get(`${host}/api/dashboard/getSysInfo.json`)
 
 // This exported function will be called by `bundleRenderer`.
 // This is where we perform data-prefetching to determine the
@@ -25,27 +36,36 @@ export default context => {
     // wait until router has resolved possible async hooks
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
+      // console.log("matchedComponents", matchedComponents)
       // no matched routes
       if (!matchedComponents.length) {
         reject({ code: 404 })
       }
-      // Call fetchData hooks on components matched by the route.
-      // A preFetch hook dispatches a store action and returns a Promise,
-      // which is resolved when the action is complete and store state has been
-      // updated.
-      Promise.all(matchedComponents.map(({ asyncData }) => asyncData && asyncData({
-        store,
-        route: router.currentRoute
-      }))).then(() => {
 
+      // const matchedComponentsRouter = matchedComponents.map(({ asyncData }) => asyncData && asyncData({
+      //   store,
+      //   route: router.currentRoute
+      // }))
+      const matchedComponentsRouter = matchedComponents.map(Component => {
+        if (Component.asyncData) {
+          return Component.asyncData({
+            type: Component.name,
+            store,
+            route: router.currentRoute
+          })
+        }
+      })     
+
+      Promise.all( matchedComponentsRouter ).then( res => {
         isDev && console.log(`数据预拉取时间 data pre-fetch: ${Date.now() - s}ms`)
-        // After all preFetch hooks are resolved, our store is now
-        // filled with the state needed to render the app.
-        // Expose the state on the render context, and let the request handler
-        // inline the state in the HTML response. This allows the client-side
-        // store to pick-up the server-side state without having to duplicate
-        // the initial data fetching on the client.
+
         context.state = store.state
+        let sysInfo = store.state.sysInfo
+        context.title = sysInfo.title
+        context.head = `<meta name="keywords" content="${sysInfo.keyword}"><meta name="description" content="${sysInfo.detail}"><link rel="icon" href="${host}${sysInfo.favicon}">`
+        
+        // console.error("context.state", context.state)
+        
         resolve(app)
       }).catch(reject)
     }, reject)

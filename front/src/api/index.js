@@ -1,76 +1,305 @@
-// this is aliased in webpack config based on server/client build
-import { createAPI } from 'create-api'
+import axios from 'axios'
+import dateTime from '../util/datetime'
+const host = "http://127.0.0.1:8180"
 
-const logRequests = !!process.env.DEBUG_API
-
-const api = createAPI({
-  version: '/v0',
-  config: {
-    databaseURL: 'https://hacker-news.firebaseio.com'
-  }
-})
-
-// warm the front page cache every 15 min
-// make sure to do this only once across all requests
-if (api.onServer) {
-  warmCache()
+/**
+ * getSysInfo 获取系统信息
+ */
+export const getSysInfo = () => {
+  return new Promise( (resolve, reject) => {
+    axios.get(`${host}/api/dashboard/getSysInfo.json`).then( res => {
+      if(res.status == 200){
+        let json = res.data.data
+        res.data.data.logo1 = `${host}` + res.data.data.logo1
+        res.data.data.logo2 = `${host}` + res.data.data.logo2
+        res.data.data.favicon = `${host}` + res.data.data.favicon
+        resolve(json)
+      }else{
+        reject({})
+      }   
+    }).catch( err => reject(err))
+  })
 }
 
-function warmCache () {
-  fetchItems((api.cachedIds.top || []).slice(0, 30))
-  setTimeout(warmCache, 1000 * 60 * 15)
+/**
+ * getBannerList 获取banner信息
+ * @param  type 分类 
+ */
+export const getBannerList = (type) => {
+  return new Promise( (resolve, reject) => {
+    axios.post(`${host}/api/dashboard/getImgListCate.json`, {type}).then( res => {
+      if(res.status == 200){
+        let json = res.data.data
+        json = json.map( item => {
+          return {
+            src: `${host}` + item.src,
+            link: item.link,
+            tags: item.tags
+          }
+        })
+        resolve(json)
+      }else{
+        reject({})
+      }   
+    }).catch( err => reject(err))
+  })
 }
 
-function fetch (child) {
-  logRequests && console.log(`fetching ${child}...`)
-  const cache = api.cachedItems
-  if (cache && cache.has(child)) {
-    logRequests && console.log(`cache hit for ${child}.`)
-    return Promise.resolve(cache.get(child))
-  } else {
-    return new Promise((resolve, reject) => {
-      api.child(child).once('value', snapshot => {
-        const val = snapshot.val()
-        // mark the timestamp when this item is cached
-        if (val) val.__lastUpdated = Date.now()
-        cache && cache.set(child, val)
-        logRequests && console.log(`fetched ${child}.`)
-        resolve(val)
-      }, reject)
-    })
-  }
+/**
+ * getHomeProductsList 获取产品列表
+ * @param 
+ */
+export const getHomeProductsList = ( ) => {
+  return new Promise( (resolve, reject) => {
+    axios.get(`${host}/api/dashboard/getProductsList.json`).then( res => {
+      if(res.status == 200){
+        let json = res.data.data
+        json = json.sort( (a, b) => {
+          return  b.modified_time - a.modified_time
+        })        
+        json = json.map( item => {
+          return {
+            id: item.id,
+            title: item.title,
+            ftitle: item.ftitle,
+            abstract: item.abstract,
+            fabstract: item.fabstract,
+            src: `${host}` + (item.src1||item.src2 || item.src3 || item.src4 || item.src5),
+            date: dateTime.parseStampToFormat(Number(item.modified_time), 'YYYY-MM-DD hh:mm:ss')             
+          }
+        })
+        resolve(json)
+      }else{
+        reject({})
+      }   
+    }).catch( err => reject(err))
+  })  
 }
 
-export function fetchIdsByType (type) {
-  return api.cachedIds && api.cachedIds[type]
-    ? Promise.resolve(api.cachedIds[type])
-    : fetch(`${type}stories`)
+/**
+ * getProductsCateList 获取产品分类列表
+ * @param 
+ */
+export const getProductsCateList = ( ) => {
+  return new Promise( (resolve, reject) => {
+    axios.get(`${host}/api/dashboard/getProductsCateList.json`).then( res => {
+      if(res.status == 200){
+        let json = res.data.data.map( (item, idx) => {
+          let bool = false
+          if(idx == 0)bool=true
+          return {
+            'category': item.category,
+            'fcategory': item.fcategory,
+            'active': bool
+          }
+        })
+        resolve(json)
+      }else{
+        reject({})
+      }   
+    }).catch( err => reject(err))
+  })  
 }
 
-export function fetchItem (id) {
-  return fetch(`item/${id}`)
+/**
+ * getProductsCateList 获取产品分类列表
+ * @param 
+ */
+export const getCategoryList = ( category ) => {
+  return new Promise( (resolve, reject) => {
+    axios.post(`${host}/api/dashboard/getCateProductsList.json`, { category }).then( res => {
+      if(res.status == 200){
+        let json = res.data.data
+        json.sort( (a, b) => {
+          let c, d
+          c = a.modified_time || a.create_time
+          d = b.modified_time || b.create_time
+          return d - c
+        })
+        json.forEach( item => {
+          item.src = `${host}` + item.src
+        })
+        resolve(json)
+      }else{
+        reject({})
+      }   
+    }).catch( err => reject(err))
+  })  
 }
 
-export function fetchItems (ids) {
-  return Promise.all(ids.map(id => fetchItem(id)))
+/**
+ * getProductsInfo 获取产品类
+ * @param  page 页面id 
+ */
+export const getProductsInfo = (page) => {
+  return new Promise( (resolve, reject) => {
+    axios.post(`${host}/api/dashboard/getProductsInfo.json`, {id: page }).then( res => {
+      if(res.status == 200){
+        let json = res.data.data
+        json = {
+            title: json.title,
+            ftitle: json.ftitle,
+            category: json.category,
+            fcategory: json.fcategory,
+            abstract: json.abstract,
+            fabstract: json.fabstract,
+            content: json.content,
+            fcontent: json.fcontent,
+            link: json.link,
+            price: json.price,
+            src: `${host}` + (json.src1 || json.src2 || json.src3 || json.src4 || json.src5),
+            src1:  json.src1 ? `${host}` + json.src1 : null,        
+            src2: json.src2 ? `${host}` + json.src2 : null,        
+            src3: json.src3 ? `${host}` + json.src3 : null,        
+            src4: json.src4 ? `${host}` + json.src4 : null,       
+            src5: json.src5 ? `${host}` + json.src5 : null      
+        }
+        resolve(json)
+      }else{
+        reject({})
+      }   
+    }).catch( err => reject(err))
+  })
 }
 
-export function fetchUser (id) {
-  return fetch(`user/${id}`)
+/**
+ * getNewsList 获取新闻信息
+ * @param  type 分类 
+ */
+export const getNewsList = (type) => {
+  return new Promise( (resolve, reject) => {
+    axios.get(`${host}/api/dashboard/getNewsAbstract.json`).then( res => {
+      if(res.status == 200){
+        let json = res.data.data
+        json = json.sort( (a, b) => {
+          return  b.modified_time - a.modified_time
+        })        
+        json = json.map( item => {
+          return {
+            id: item.id,
+            title: item.title,
+            ftitle: item.ftitle,
+            abstract: item.abstract,
+            fabstract: item.fabstract,
+            src: `${host}` + item.src,
+            date: dateTime.parseStampToFormat(Number(item.modified_time), 'YYYY-MM-DD hh:mm:ss')             
+          }
+        })
+        resolve(json)
+      }else{
+        reject({})
+      }   
+    }).catch( err => reject(err))
+  })
 }
 
-export function watchList (type, cb) {
-  let first = true
-  const ref = api.child(`${type}stories`)
-  const handler = snapshot => {
-    if (first) {
-      first = false
-    } else {
-      cb(snapshot.val())
-    }
-  }
-  ref.on('value', handler)
-  return () => {
-    ref.off('value', handler)
-  }
+/**
+ * getNewsContent 获取新闻内容
+ * @param  type 分类 
+ */
+export const getNewsContent = (page) => {
+  return new Promise( (resolve, reject) => {
+    axios.post(`${host}/api/dashboard/getNewsInfo.json`, {id: page }).then( res => {
+      if(res.status == 200){
+        let json = res.data.data
+        json = {
+            id: json.id,
+            title: json.title,
+            ftitle: json.ftitle,
+            abstract: json.abstract,
+            fabstract: json.fabstract,
+            content: json.content,
+            fcontent: json.fcontent,
+            src: `${host}` + json.src,
+            date: dateTime.parseStampToFormat(Number(json.modified_time), 'YYYY-MM-DD hh:mm:ss')             
+        }
+        resolve(json)
+      }else{
+        reject({})
+      }   
+    }).catch( err => reject(err))
+  })
+}
+
+/**
+ * getFaqList 获取疑难问题信息
+ * @param  type 分类 
+ */
+export const getFaqList = () => {
+  return new Promise( (resolve, reject) => {
+    axios.get(`${host}/api/dashboard/getFaqList.json`).then( res => {
+      if(res.status == 200){
+        let json = res.data.data
+        json = json.map( item => {
+          return {
+            title: item.title,
+            ftitle: item.ftitle,
+            desc: item.detail,
+            fdesc: item.fdetail
+          }
+        })        
+        resolve(json)
+      }else{
+        reject({})
+      }   
+    }).catch( err => reject(err))
+  })
+}
+
+/**
+ * fetchHomePage 获取home数据
+ */
+export function fetchHomePage () {
+  return Promise.all([getSysInfo(), getBannerList("home"), getHomeProductsList(), getNewsList()])
+}
+
+/**
+ * fetchProductsPage 获取产品页数据
+ */
+export function fetchProductsPage () {
+  return Promise.all([getSysInfo(), getBannerList("product"), getProductsCateList()])
+}
+
+/**
+ * fetchProductsDetailPage 获取产品详情数据
+ */
+export function fetchProductsDetailPage (page) {
+  return Promise.all([getSysInfo(), getBannerList("product"), getProductsInfo(page)])
+}
+
+
+/**
+ * fetchProductsPage 获取新闻页数据
+ */
+export function fetchNewsPage () {
+  return Promise.all([getSysInfo(), getBannerList("news"), getNewsList()])
+}
+
+/**
+ * fetchProductsPage 获取新闻页数据
+ */
+export function fetchNewsArticlesPage (page) {
+  return Promise.all([getSysInfo(), getBannerList("news"), getNewsContent(page)])
+}
+
+
+/**
+ * fetchProductsPage 获取关于我们页数据
+ */
+export function fetchAboutPage () {
+  return Promise.all([getSysInfo(), getBannerList("about"), getNewsList()])
+}
+
+/**
+ * fetchProductsPage 获取联系我们页数据
+ */
+export function fetchContactPage () {
+  return Promise.all([getSysInfo(), getBannerList("contact"), getNewsList()])
+}
+
+/**
+ * fetchProductsPage 获取疑难解答页数据
+ */
+export function fetchFaqPage () {
+  return Promise.all([getSysInfo(), getBannerList("faq"), getFaqList()])
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <bat-header></bat-header>
+    <bat-header ></bat-header>
     <transition name="fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
@@ -16,8 +16,7 @@
       name: 'page',
       data() {
           return {
-            msg: 'Welcome to Battery Site' 
-          };
+          }
       },
 
       components: { 
@@ -25,6 +24,12 @@
         'bat-footer': Footer
       },
 
+      computed: {
+        banners () {
+          return this.$store.getters.bannerList
+        }
+      },
+      
       created () {
 
       },

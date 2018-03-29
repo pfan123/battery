@@ -1,50 +1,18 @@
 <template>
     <div class="news">
-        <h3 class="news_title">新闻中心</h3>
+        <h3 class="news_title">{{ isEnglish ? 'NEWS' : '新闻中心'}}</h3>
         <div class="news_wrap g_cf">
-            <a class="news_item"  href="./message-list.html?type=1">
+            <a class="news_item" v-for=" item in list"  :href="'/newsarticles/'+item.id">
                 <div class="news_img">
-                    <img src="https://yun.pfan123.com/images/temp/klImg-1.png">
+                    <img :src="item.src">
                 </div>
-                <div class="news_subtitle">
-                    行业资讯
-                    <i></i>
+                <div class="news_subtitle line1">
+                    {{isEnglish ? item.ftitle : item.title}}
                 </div>
-                <div class="news_list" ></div>
-            </a>
-
-            <a class="news_item"  href="./message-list.html?type=1">
-                <div class="news_img">
-                    <img src="http://temp.im/352x216">
+                <div class="news_desc line2" >
+                    {{isEnglish ? item.fabstract : item.abstract}}
                 </div>
-                <div class="news_subtitle">
-                    行业资讯
-                    <i></i>
-                </div>
-                <div class="news_list" ></div>
-            </a>
-            
-            <a class="news_item"  href="./message-list.html?type=1">
-                <div class="news_img">
-                    <img src="https://yun.pfan123.com/images/temp/klImg-3.png">
-                </div>
-                <div class="news_subtitle">
-                    行业资讯
-                    <i></i>
-                </div>
-                <div class="news_list" ></div>
-            </a>   
-
-            <a class="news_item"  href="./message-list.html?type=1">
-                <div class="news_img">
-                    <img src="https://yun.pfan123.com/images/temp/klImg-3.png">
-                </div>
-                <div class="news_subtitle">
-                    行业资讯
-                    <i></i>
-                </div>
-                <div class="news_list" ></div>
-            </a>                     
+            </a>                   
         </div>
     </div>
 </template>
@@ -53,9 +21,22 @@
   export default {
     name: 'bat-news',
 
+    props: {
+        list: {
+            type: Array,
+            required: true
+        }
+    }, 
+    
     data() {
         return {
 
+        }
+    },
+
+    computed: {
+        isEnglish () {
+            return this.$store.getters.getIsEnglish     
         }
     },
 
@@ -97,7 +78,7 @@
   
   .news_item
     display block
-    margin 0 32px 20px 0
+    margin 0 32px 0 0
     float left
     width 258px
     _width 258px
@@ -127,27 +108,16 @@
     display block
   
   .news_subtitle
-    height 46px
-    line-height 46px
+    padding 0 4px
+    height 35px
+    line-height 35px
     position relative
-    border-bottom 1px solid #e7e5e6
-    font-size 20px
+    font-size 16px
     color #333
-  
-  .news_subtitle i
-    width 10px
-    height 18px
-    background url('https://yun.pfan123.com/images/icon/queryArrow.png') no-repeat
-    position absolute
-    right 6px
-    top 50%
-    margin-top -9px
-  
-  .news_list
-    padding-top 20px
-  
-  .news_list p
-    line-height 1.1
-    margin-bottom 18px
-    color #666
+   
+    .news_desc
+        padding 0 4px
+        color #888
+        font-size 14px
+        height 42px
 </style>

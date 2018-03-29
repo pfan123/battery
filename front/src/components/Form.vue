@@ -1,19 +1,34 @@
 <template>
     <div class="form_wrapper">
-        <div class="form_info">
-            <h4 class="form_title">问题反馈</h4>
-            <p class="form_desc">我们将收到您的信息48小时内来为你解答问题</p>
+        <div class="form_info" v-if="isEnglish">
+            <h4 class="form_title">{{feedBack.ftitle}}</h4>
+            <p class="form_desc">{{feedBack.fdetail}}</p>
             <div class="form_input g_cf">
-              <label for="">问题标题：</label><input type="text" placeholder="请输入问题标题">
+              <label for="">{{feedBack.fquestionTit}}：</label><input type="text" placeholder="">
             </div>
             <div class="form_input g_cf">
-              <label for="">问题详情：</label><textarea  rows="3" cols="20">请输入详细问题</textarea>
+              <label for="">{{feedBack.fquestionDesc}}：</label><textarea  rows="3" cols="20"></textarea>
+            </div>
+            <div class="form_input g_cf">
+              <label for="">email: </label><input type="text" placeholder="">
+            </div>
+
+            <input type="button" value="confirm" class="form_button">
+        </div>
+        <div class="form_info" v-else>
+            <h4 class="form_title">{{feedBack.title}}</h4>
+            <p class="form_desc">{{feedBack.detail}}</p>
+            <div class="form_input g_cf">
+              <label for="">{{feedBack.questionTit}}：</label><input type="text" placeholder="请输入问题标题">
+            </div>
+            <div class="form_input g_cf">
+              <label for="">{{feedBack.questionDesc}}：</label><textarea  rows="3" cols="20">请输入详细问题</textarea>
             </div>
             <div class="form_input g_cf">
               <label for="">email: </label><input type="text" placeholder="请输入您的email">
             </div>
 
-            <input type="button" value="提交" class="form_button">
+            <input type="button" value="提交" class="form_button">          
         </div>
     </div>
 </template>
@@ -24,10 +39,23 @@ export default {
 
   data() {
       return {
-
+        feedBack: {
+          title: "问题反馈",
+          ftitle: "OTHER QUESTIONS",
+          detail: "我们将收到您的信息48小时内来为你解答问题",
+          fdetail: "We receive your information within 24 hours to answer your questions for you",
+          questionTit: "问题标题",
+          fquestionTit: "Your question title",
+          questionDesc: "问题详情",
+          fquestionDesc: "Your question details"
+        }
       };
   },
-
+  computed: {
+    isEnglish () {
+      return this.$store.getters.getIsEnglish     
+    }
+  },
   components: {
 
   },
@@ -85,7 +113,10 @@ export default {
         font-size 16px
         line-height 48px
         color #666
-        width 100px
+        width 170px
+        _width 185px
+        padding-right 15px
+        text-align right
 
       input 
         diaplay block
@@ -93,8 +124,8 @@ export default {
         _height 50px
         line-height 48px
         border 1px solid #999
-        width 690px
-        _width 700px
+        width 605px
+        _width 645px
         padding 0 4px
         color #999
         font-size 14px
@@ -117,8 +148,8 @@ export default {
       textarea
         display block
         border 1px solid #999
-        width 690px
-        _width 700px
+        width 605px
+        _width 645px
         padding 4px        
         height 200px
         color #999

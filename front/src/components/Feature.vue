@@ -3,10 +3,15 @@
       <div class="feat_keyword_list g_cf">
           <div class="feat_keyword_item" v-for="item in feats" :key="item.src">
               <div class="feat_keyword_icon"><img :src="item.src" alt=""></div>
-              <div class="feat_keyword_info">
+
+              <div class="feat_keyword_info" v-if="isEnglish">
+                  <h4>{{item.ftitle}}</h4>
+                  <p class="line2">{{item.fdesc}}</p>
+              </div>
+              <div class="feat_keyword_info" v-else>
                   <h4>{{item.title}}</h4>
                   <p class="line2">{{item.desc}}</p>
-              </div>
+              </div>              
           </div>
       </div>
   </div>  
@@ -14,34 +19,42 @@
 
 <script>
 export default {
-  name: 'bat-feature',
-  
-  props: {
-    feats: Array,
-    required: true
-  },
+    name: 'bat-feature',
 
-  data() {
-      return {
+    props: {
+        feats: {
+            type: Array,
+            required: true
+        }
+    }, 
 
-      };
-  },
+    computed: {
+        isEnglish () {
+            return this.$store.getters.getIsEnglish     
+        }
+    },
 
-  components: {
+    data() {
+        return {
 
-  },
+        };
+    },
 
-  created () {
+    components: {
 
-  },
+    },
 
-  mounted () {
+    created () {
 
-  },
+    },
 
-  methods: {
+    mounted () {
 
-  }
+    },
+
+    methods: {
+
+    }
 }
 </script>
 
@@ -56,6 +69,7 @@ export default {
         margin 0 auto
         width 1135px
         min-width 1135px 
+        min-height 100px
         overflow auto       
     .feat_keyword_item
         width 25%

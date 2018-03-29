@@ -2,15 +2,15 @@
     <div class="map">
         <div class="map_wrap">
             <div class="map_float">
-                <div class="map_phone">服务热线: <span>40088-10115</span>
+                <div class="map_phone">{{isEnglish ? 'Service hotline' : '服务热线'}}: <span>40088-10115</span>
                 </div>
                 <div class="map_sel">
                     <select>
-                        <option value="114.088895,22.549487" selected="">深圳总部</option>
+                        <option v-for="item in mapInfo.branch" :value="item.id" selected="">{{isEnglish ? item.ftitle : item.title}}</option>
                     </select>
                 </div>
-                <div class="map_adress" id="map_adress">广东省深圳市龙华区三联路跟清泉路交汇处
-                    <br>联系方式: 40088-10115</div>
+                <div class="map_adress" id="map_adress">{{isEnglish ? mapInfo.ftitle : mapInfo.address}}
+                    <br>{{isEnglish ? 'Landline phone' : '联系方式'}}: {{mapInfo.telnum}}</div>
             </div>
             <div class="map_content"><img src="/public/images/map.jpg" alt=""></div>
         </div>
@@ -22,6 +22,19 @@
 <script>
   export default {
     name: 'bat-mission',
+
+    props: {
+        mapInfo: {
+            type: Object,
+            required: true
+        }
+    }, 
+
+    computed: {
+        isEnglish () {
+            return this.$store.getters.getIsEnglish     
+        }
+    },    
 
     data() {
         return {

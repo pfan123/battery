@@ -3,12 +3,33 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import axios from 'axios'
 import '@/assets/css/reset.styl'
 
+import axios from 'axios'
 Vue.prototype.$http = axios
 
-import 'element-ui/lib/theme-default/index.css'
+import myVueEditor from 'my-vue-editor'
+let editorConfig = {
+  modules: [
+    'font',
+    'foreColor',
+    'bold',
+    'italic',
+    'underline',
+    'linethrough',
+    'ul',
+    'ol',
+    'indent',
+    'outdent',
+    'align',
+    'image',
+    'quote',
+    'todo'
+  ]
+}
+
+Vue.use(myVueEditor, editorConfig)
+
 import Element from 'element-ui'
 Vue.use(Element)
 

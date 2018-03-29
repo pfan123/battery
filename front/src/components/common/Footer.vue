@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <a class="footer_brand" href="/"><img src="http://temp.im/144x64" alt=""></a>
+    <a class="footer_brand" href="/"><img :src="logo" alt=""></a>
     <p class="footer_info line1" v-cloak>{{Copyright}}</p>
     <p class="footer_info line1" v-cloak>{{Address}}</p>
   </div>
@@ -17,7 +17,11 @@ export default {
         Address: '地址：广东省深圳市龙华区三联路跟清泉路交汇处清泉大厦九楼 座机：0755－86160888'
       };
   },
-
+  computed: {
+    logo () {
+      return this.$store.getters.sysInfo.logo2
+    }
+  },
   components: {
 
   },

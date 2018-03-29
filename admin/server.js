@@ -8,6 +8,7 @@ const resolve = file => path.resolve(__dirname, file)
 const { createBundleRenderer } = require('vue-server-renderer')
 const opn = require('opn')
 const proxy = require('koa-proxy')
+const { uploadPicture } = require('./utils/upload')
 
 const isProd = process.env.NODE_ENV === 'production'
 const useMicroCache = process.env.MICRO_CACHE !== 'false'
@@ -21,6 +22,13 @@ const router = require('koa-router')()
 const bodyParser = require('koa-bodyparser')  
 const logger = require('koa-logger')  
 const config = require('./sysConfig.js')
+const crossOrigin = require("../lib/crossOrigin")
+const crsfToken = require("../lib/setCrsfToken")
+//配置允许跨域请求
+app.use(crossOrigin())
+//http自定义csrftoken属性，预防csrf
+app.use(crsfToken(10))
+
 const session = require('koa-session-minimal')
 const MysqlStore = require('koa-mysql-session')
 
@@ -52,11 +60,15 @@ const staticCache = require('koa-static-cache')
 //https://github.com/koajs/static-cache  参数设置，配置 prefix 提供的文件创建虚拟路径前缀  类似app.use('/static', express.static('public')) http://expressjs.com/zh-cn/starter/static-files.html
 const serve = (pf, path, cache) => staticCache(resolve(path), {
   maxAge: cache && isProd ? 365 * 24 * 60 * 60 : 0,
+  dynamic: true,
   gzip: true,
   prefix: pf
 })
 
-app.use(serve('/static', './dist/static', true))
+app
+.use(serve('/static', './dist/static', true))
+.use(serve('/upload', './upload', true))
+
 // 配置HTTP请求体解析中间件，支持content-type：json, form and text 
 app.use(bodyParser())
 // 配置控制台个性日志中间件
@@ -132,12 +144,66 @@ function render (ctx, next, resolve) {
     })() 
   // }
 }
+
 const userInfoController = require('./controllers/user-info')
-router.get('/user/getUserInfo.json', userInfoController.getLoginUserInfo )
-router.post('/user/signIn.json', userInfoController.signIn )
+router.get('/api/user/getUserInfo.json', userInfoController.getLoginUserInfo )
+router.post('/api/user/signIn.json', userInfoController.signIn )
+
+const sysInfoController = require('./controllers/sys-info')
+router.get('/api/dashboard/getSysInfo.json', sysInfoController.getSysInfo )
+router.post('/api/dashboard/updateSysInfo.json', sysInfoController.updateSysInfo )
+
+const productsInfoController = require('./controllers/products-info')
+router.get('/api/dashboard/getProductsList.json', productsInfoController.getProductsList )
+router.get('/api/dashboard/getProductsCateList.json', productsInfoController.getProductsCateList )
+router.post('/api/dashboard/getCateProductsList.json', productsInfoController.getCateProductsList )
+router.get('/api/dashboard/getProductsAbstract.json', productsInfoController.getProductsAbstract )
+router.post('/api/dashboard/updateProductsInfo.json', productsInfoController.updateProductsInfo )
+router.post('/api/dashboard/getProductsInfo.json', productsInfoController.getProductsInfo )
+router.post('/api/dashboard/deteProducts.json', productsInfoController.deteProducts )
+
+const newsInfoController = require('./controllers/news-info')
+router.get('/api/dashboard/getNewsList.json', newsInfoController.getNewsList )
+router.get('/api/dashboard/getNewsAbstract.json', newsInfoController.getNewsAbstract )
+router.post('/api/dashboard/updateNewsInfo.json', newsInfoController.updateNewsInfo )
+router.post('/api/dashboard/getNewsInfo.json', newsInfoController.getNewsInfo )
+router.post('/api/dashboard/deteNews.json', newsInfoController.deteNews )
+
+const faqInfoController = require('./controllers/faq-info')
+router.get('/api/dashboard/getFaqList.json', faqInfoController.getFaqList )
+router.post('/api/dashboard/updateFaqInfo.json', faqInfoController.updateFaqInfo )
+router.post('/api/dashboard/getFaqInfo.json', faqInfoController.getFaqInfo )
+router.post('/api/dashboard/deteFaq.json', faqInfoController.deteFaq )
+
+const imgInfoController = require('./controllers/img-info')
+router.get('/api/dashboard/getImgList.json', imgInfoController.getImgList )
+router.post('/api/dashboard/getImgListCate.json', imgInfoController.getImgListCate )
+router.post('/api/dashboard/updateImgInfo.json', imgInfoController.updateImgInfo )
+router.post('/api/dashboard/getImgInfo.json', imgInfoController.getImgInfo )
+router.post('/api/dashboard/deteImg.json', imgInfoController.deteImg )
+
+
+
+// const uploadImgController = require('./controllers/uploadImg')
+router.post('/api/dashboard/uploadImg.json', async (ctx) => {
+  let formData = ctx.request.body
+  let serverFilePath = path.join( __dirname, 'upload-files' )
+    // 上传文件事件
+    result = await uploadPicture( ctx, {
+      fileType: 'album', // common or album
+      path: serverFilePath
+    })
+
+    console.error("uploadImg", result)
+    ctx.body = result  
+} )
+
+
+
+
 
 if (isProd) {
-  router.get('/', (ctx, next) => {
+  router.get('/dashboard/', (ctx, next) => {
       return new Promise( (resolve, reject) => {
         render(ctx, next, resolve)
       })
@@ -159,3 +225,24 @@ app.listen(port, () => {
   opn('http://localhost:' + port)
   console.log(`server started at localhost:${port}`)
 })
+
+/**
+ * 异常日志打印
+ */
+process.on("uncaughtException",function(err){
+  console.log(process.pid);
+  console.log("Caught exception:"+err);
+  console.log(curTime() + "server error!");
+});
+
+
+/**生成当前时间**/
+function curTime() {
+  var date = new Date();
+  var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+  var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+  var hh = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+  var mm = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+  return "["+date.getFullYear() + "-" + month + "-" + currentDate+" "+hh + ":" + mm+"]";
+  //返回格式：yyyy-MM-dd hh:mm
+}

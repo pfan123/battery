@@ -1,57 +1,15 @@
 <template>
     <div class="products">
-        <h3 class="products_title">产品展示</h3>
+        <h3 class="products_title">{{isEnglish ? 'PRODUCT DISPLAY' : '产品展示'}}</h3>
         <el-carousel :interval="5000" arrow="always" height="700px">
-            <el-carousel-item v-for="item in 4" :key="item">
-                <div class="products_wrap g_cf">          
-                    <a class="products_item"  href="/detail">
-                        <img src="http://www.unitpackpower.com/img/S004H.jpg" class="products_img">
-                        <p class="products_subtitle line2">
-                            CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
+            <el-carousel-item v-for="index in len" :key="index">
+                <div class="products_wrap g_cf">        
+                    <a class="products_item"  v-for="item in homeProList.slice((index-1)*8, index*8)" :href="'/detail/'+item.id">
+                        <img :src="item.src" class="products_img">
+                        <p class="products_subtitle line2">sddsddds
+                            {{isEnglish ? item.ftitle : item.title}}
                         </p>
-                    </a>
-                    <a class="products_item"  href="/detail">
-                        <img src="http://www.unitpackpower.com/img/S015H.jpg" class="products_img">
-                        <p class="products_subtitle line2">
-                            CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                        </p>
-                    </a>
-                    <a class="products_item"  href="/detail">
-                        <img src="http://www.unitpackpower.com/img/S013H.jpg" class="products_img">
-                        <p class="products_subtitle line2">
-                            CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                        </p>
-                    </a>
-                    <a class="products_item"  href="/detail">
-                        <img src="http://www.unitpackpower.com/img/S004H.jpg" class="products_img">
-                        <p class="products_subtitle line2">
-                            CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                        </p>
-                    </a>     
-                    <a class="products_item"  href="/detail">
-                        <img src="http://www.unitpackpower.com/img/S004H.jpg" class="products_img">
-                        <p class="products_subtitle line2">
-                            CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                        </p>
-                    </a>
-                    <a class="products_item"  href="/detail">
-                        <img src="http://www.unitpackpower.com/img/S015H.jpg" class="products_img">
-                        <p class="products_subtitle line2">
-                            CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                        </p>
-                    </a>
-                    <a class="products_item"  href="/detail">
-                        <img src="http://www.unitpackpower.com/img/S013H.jpg" class="products_img">
-                        <p class="products_subtitle line2">
-                            CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                        </p>
-                    </a>
-                    <a class="products_item"  href="/detail">
-                        <img src="http://www.unitpackpower.com/img/S004H.jpg" class="products_img">
-                        <p class="products_subtitle line2">
-                            CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                        </p>
-                    </a>                     
+                    </a>                   
                 </div>           
             </el-carousel-item>
         </el-carousel>
@@ -61,10 +19,22 @@
 <script>
   export default {
     name: 'bat-products',
+    props: {
+        homeProList: {
+            type: Array,
+            required: true
+        }
+    }, 
+
+    computed: {
+        isEnglish () {
+            return this.$store.getters.getIsEnglish     
+        }
+    },
 
     data() {
         return {
-
+            len: ''
         }
     },
 
@@ -73,7 +43,7 @@
     },
 
     created () {
-
+        this.len = Math.ceil(this.homeProList.length / 8)
     },
 
     mounted () {

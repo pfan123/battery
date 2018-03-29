@@ -4,12 +4,16 @@ import Login from '@/view/Login'
 import Logout from '@/view/Login'
 import Dashboard from '@/view/Dashboard'
 import Sys from '@/view/SysSetting'
-import HomeSys from '@/view/HomeSetting'
+import BannerSys from '@/view/BannerSetting'
+import BanEditor from '@/view/BanEditor'
 import ProSys from '@/view/ProSetting'
+import ProductEdit from '@/view/ProEditor'
 import NewSys from '@/view/NewSetting'
+import NewEditor from '@/view/NewEditor'
 import AboutSys from '@/view/AboutSetting'
 import ContactSys from '@/view/ContactSetting'
 import FAQSys from '@/view/FaqSetting'
+import FaqEditor from '@/view/FaqEditor'
 
 Vue.use(Router);
 
@@ -30,20 +34,35 @@ export default new Router({
           component: Sys
         },
         {
-          path: '/dashboard/home',
-          name: 'HomeSys',
-          component: HomeSys
+          path: '/dashboard/banners',
+          name: 'BannerSys',
+          component: BannerSys
         },
+        {
+          path: '/dashboard/banedit/:id',
+          name: 'editBan',
+          component: BanEditor
+        },        
         {
           path: '/dashboard/products',
           name: 'ProSys',
           component: ProSys
         },
         {
+          path: '/dashboard/products/:id',
+          name: 'editProduct',
+          component: ProductEdit
+        },          
+        {
           path: '/dashboard/news',
           name: 'NewSys',
           component: NewSys
         },
+        {
+          path: '/dashboard/edit/:id',
+          name: 'editNews',
+          component: NewEditor
+        },        
         {
           path: '/dashboard/about',
           name: 'AboutSys',
@@ -58,7 +77,12 @@ export default new Router({
           path: '/dashboard/faq',
           name: 'FAQSys',
           component: FAQSys
-        }                                                                  
+        },
+        {
+          path: '/dashboard/faqedit/:id',
+          name: 'editFaq',
+          component: FaqEditor
+        }                                                                               
       ]
     },    
     { path: '/', redirect: '/admin/login' }

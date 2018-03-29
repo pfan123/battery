@@ -1,222 +1,63 @@
 <template>
-    <div class="category">
-        <h3 class="category_title">Products   /   产品中心</h3>
+    <div class="category g_cf">
+        <h3 class="category_title">{{isEnglish ? "Products" : "产品中心"}}</h3>
         <div class="category_left g_cf">
-            <a href="#"  :class="{actived: item.active}" v-for="item in cates" :key="item.title">{{item.title}}</a>
+            <a href="javascript:;" v-for="(item, index) in cateList" :key="item.category" @click="tabCate(index)"  :class="{actived: item.active}">{{isEnglish ? item.fcategory : item.category}}</a>
         </div>
         <div class="category_right g_cf">
-            <a class="product_item" href="/detail">
+            <a v-if="productList[curCate]" v-for=" (item, index) in productList[curCate]" class="product_item" :key="index"  :href="'/detail/'+item.id">
                 <div class="product_pic">
-                    <img src="http://temp.im/220x220" alt="">
+                    <img :src="item.src" alt="">
                 </div>
                 <div class="product_info">
                     <h4 class="product_item_title line2">
-                        CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
+                        {{isEnglish ? item.ftitle : item.title}}
                     </h4>
-                    <p class="product_price">$588.00 / piece</p>
-                    <span class="product_pay">直接购买</span>
+                    <p class="product_price">$ {{item.price}} / piece</p>
+                    <span class="product_pay" @click="goLink($event, item.link)">直接购买</span>
                 </div>
-            </a>
-            <a class="product_item" href="/detail">
-                <div class="product_pic">
-                    <img src="http://temp.im/220x220" alt="">
-                </div>
-                <div class="product_info">
-                    <h4 class="product_item_title line2">
-                        CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                    </h4>
-                    <p class="product_price">$588.00 / piece</p>
-                    <span class="product_pay">直接购买</span>
-                </div>
-            </a>
-            <a class="product_item" href="/detail">
-                <div class="product_pic">
-                    <img src="http://temp.im/220x220" alt="">
-                </div>
-                <div class="product_info">
-                    <h4 class="product_item_title line2">
-                        CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                    </h4>
-                    <p class="product_price">$588.00 / piece</p>
-                    <span class="product_pay">直接购买</span>
-                </div>
-            </a>
-            <a class="product_item" href="/detail">
-                <div class="product_pic">
-                    <img src="http://temp.im/220x220" alt="">
-                </div>
-                <div class="product_info">
-                    <h4 class="product_item_title line2">
-                        CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                    </h4>
-                    <p class="product_price">$588.00 / piece</p>
-                    <span class="product_pay">直接购买</span>
-                </div>
-            </a>
-
-            <a class="product_item" href="/detail">
-                <div class="product_pic">
-                    <img src="http://temp.im/220x220" alt="">
-                </div>
-                <div class="product_info">
-                    <h4 class="product_item_title line2">
-                        CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                    </h4>
-                    <p class="product_price">$588.00 / piece</p>
-                    <span class="product_pay">直接购买</span>
-                </div>
-            </a>
-            <a class="product_item" href="/detail">
-                <div class="product_pic">
-                    <img src="http://temp.im/220x220" alt="">
-                </div>
-                <div class="product_info">
-                    <h4 class="product_item_title line2">
-                        CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                    </h4>
-                    <p class="product_price">$588.00 / piece</p>
-                    <span class="product_pay">直接购买</span>
-                </div>
-            </a>
-            <a class="product_item" href="/detail">
-                <div class="product_pic">
-                    <img src="http://temp.im/220x220" alt="">
-                </div>
-                <div class="product_info">
-                    <h4 class="product_item_title line2">
-                        CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                    </h4>
-                    <p class="product_price">$588.00 / piece</p>
-                    <span class="product_pay">直接购买</span>
-                </div>
-            </a>
-            <a class="product_item" href="/detail">
-                <div class="product_pic">
-                    <img src="http://temp.im/220x220" alt="">
-                </div>
-                <div class="product_info">
-                    <h4 class="product_item_title line2">
-                        CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                    </h4>
-                    <p class="product_price">$588.00 / piece</p>
-                    <span class="product_pay">直接购买</span>
-                </div>
-            </a>
-
-            <a class="product_item" href="/detail">
-                <div class="product_pic">
-                    <img src="http://temp.im/220x220" alt="">
-                </div>
-                <div class="product_info">
-                    <h4 class="product_item_title line2">
-                        CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                    </h4>
-                    <p class="product_price">$588.00 / piece</p>
-                    <span class="product_pay">直接购买</span>
-                </div>
-            </a>
-            <a class="product_item" href="/detail">
-                <div class="product_pic">
-                    <img src="http://temp.im/220x220" alt="">
-                </div>
-                <div class="product_info">
-                    <h4 class="product_item_title line2">
-                        CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                    </h4>
-                    <p class="product_price">$588.00 / piece</p>
-                    <span class="product_pay">直接购买</span>
-                </div>
-            </a>
-            <a class="product_item" href="/detail">
-                <div class="product_pic">
-                    <img src="http://temp.im/220x220" alt="">
-                </div>
-                <div class="product_info">
-                    <h4 class="product_item_title line2">
-                        CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                    </h4>
-                    <p class="product_price">$588.00 / piece</p>
-                    <span class="product_pay">直接购买</span>
-                </div>
-            </a>
-            <a class="product_item" href="/detail">
-                <div class="product_pic">
-                    <img src="http://temp.im/220x220" alt="">
-                </div>
-                <div class="product_info">
-                    <h4 class="product_item_title line2">
-                        CYGEREEN 1400W LiFePO4 battery 20AH electric bike battery pack 48V / LFP Battery With
-                    </h4>
-                    <p class="product_price">$588.00 / piece</p>
-                    <span class="product_pay">直接购买</span>
-                </div>
-            </a>                         
+            </a>                      
         </div>
     </div>
 </template>
 
 <script>
+  import { getCategoryList } from '../api/index.js'
   export default {
     name: 'bat-category',
 
+    props: {
+        cateList: {
+            type: Array,
+            required: true
+        }   
+    }, 
+
     data() {
         return {
-            cates: [
-                {
-                    title: "电动自行车电池",
-                    ftitle: "",
-                    active: true
-                },
-                {
-                    title: "锂离子电池组",
-                    ftitle: "",
-                    active: false
-                },
-                {
-                    title: "磷酸铁锂电池",
-                    ftitle: "",
-                    active: false
-                },  
-                {
-                    title: "电动工具电池",
-                    ftitle: "",
-                    active: false
-                },   
-                {
-                    title: "移动电源",
-                    ftitle: "",
-                    active: false
-                },  
-                {
-                    title: "充电器",
-                    ftitle: "",
-                    active: false
-                },     
-                {
-                    title: "保护板",
-                    ftitle: "",
-                    active: false
-                },  
-                {
-                    title: "自行车电机",
-                    ftitle: "",
-                    active: false
-                },  
-                {
-                    title: "后衣架",
-                    ftitle: "",
-                    active: false
-                }                                                                                                                                 
-            ]
+            curCate: ""
         }
     },
 
-    components: {
-
+    computed: {
+        isEnglish () {
+            return this.$store.getters.getIsEnglish     
+        },     
+        productList () {
+            return this.$store.getters.getProductList     
+        }           
     },
 
     created () {
-
+        let productList = {}
+        this.cateList.map( item => {
+            productList[item.category] = ""
+        })
+        this.curCate = this.cateList[0].category
+        getCategoryList(this.curCate).then( data => {
+            productList[this.curCate] = data
+            this.$store.commit('SET_PRODUCT_LIST', {json: productList})
+        })
     },
 
     mounted () {
@@ -224,8 +65,25 @@
     },
 
     methods: {
-
-    }
+        tabCate(index){
+            this.cateList.forEach( item => {
+                item.active = false
+            })
+            this.cateList[index].active = true
+            this.curCate = this.cateList[index].category
+            this.setProductList()
+        },
+        setProductList(){
+            getCategoryList(this.curCate).then( data => {
+                this.productList[this.curCate] = data
+                this.$store.commit('SET_PRODUCT_LIST', {json: this.productList})
+            })
+        },
+        goLink(event, link){
+            if (event) event.preventDefault()
+            location.href = link
+        }        
+    } 
   }
 </script>
 
@@ -233,6 +91,7 @@
     .category 
         padding 20px
         background #fff
+        min-height 400px
 
     .category_title
         color #313131
@@ -262,8 +121,6 @@
             float left
             margin 0 30px 30px 0
             cursor pointer
-            &:nth-child(4n)
-                margin-right 0
             &_title
                 font-size 14px
                 color #666 
@@ -303,4 +160,7 @@
             background #e01222
             color #fff
             border-radius 2px
+            
+            &:hover
+                opacity .9
 </style>

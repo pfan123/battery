@@ -1,33 +1,15 @@
 <template>
     <div class="mission">
         <div class="mission_inner">
-            <h3>企业文化</h3>
+            <h3>{{isEnglish ? mission.ftitle : mission.title}}</h3>
             <div class="mission_list">
-                <div class="mission_item left">
+                <div v-for="(item, index) in mission.list" :class="[index%2==0 ? 'mission_item left' : 'mission_item right']">
                     <div class="mission_img">
-                        <img src="https://yun.pfan123.com/images/temp/mission-1.png">
+                        <img :src="item.src">
                     </div>
                     <div class="mission_info">
-                        <h4><em>企业使命</em> ／ 专业成就普惠金融</h4>
-                        <span>专注努力以为体，博采众长以为用，打造专业的风控体系，专业成就普惠金融</span>
-                    </div>
-                </div>
-                <div class="mission_item right">
-                    <div class="mission_img">
-                        <img src="https://yun.pfan123.com/images/temp/mission-2.png">
-                    </div>
-                    <div class="mission_info">
-                        <h4><em>企业愿景</em> ／ 立足于小，谋求于大</h4>
-                        <span>立足于小微企业，成就中国普惠金融的大局，立足于小微企业，助力每一个从小做起的小微企业的大梦想</span>
-                    </div>
-                </div>
-                <div class="mission_item left">
-                    <div class="mission_img">
-                        <img src="https://yun.pfan123.com/images/temp/mission-3.png">
-                    </div>
-                    <div class="mission_info">
-                        <h4><em>企业文化</em> ／ 快乐、高效、负责</h4>
-                        <span>快乐是我们追求的工作氛围、高效是我们追求的工作能力、负责是我们追求的工作态度</span>
+                        <h4><em>{{isEnglish ? item.ftitle : item.title}}</em> ／ {{isEnglish ? item.fdesc: item.desc}}</h4>
+                        <span>{{isEnglish ? item.fdetail: item.detail}}</span>
                     </div>
                 </div>
             </div>
@@ -38,6 +20,19 @@
 <script>
   export default {
     name: 'bat-mission',
+
+    props: {
+        mission: {
+            type: Object,
+            required: true
+        }
+    }, 
+
+    computed: {
+        isEnglish () {
+            return this.$store.getters.getIsEnglish     
+        }
+    },    
 
     data() {
         return {

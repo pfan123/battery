@@ -130,7 +130,7 @@ function render (ctx, next, resolve) {
   }
 
   const context = {
-    title: 'Vue HN 2.0', // default title
+    // title: 'Vue HN 2.0', // default title
     url: req.url
   }
 
@@ -174,3 +174,24 @@ const port = process.env.PORT || 8080
 app.listen(port, () => {
   console.log(`server started at localhost:${port}`)
 })
+
+/**
+ * 异常日志打印
+ */
+process.on("uncaughtException",function(err){
+  console.log(process.pid);
+  console.log("Caught exception:"+err);
+  console.log(curTime() + "server error!");
+});
+
+
+/**生成当前时间**/
+function curTime() {
+  var date = new Date();
+  var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+  var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+  var hh = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+  var mm = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+  return "["+date.getFullYear() + "-" + month + "-" + currentDate+" "+hh + ":" + mm+"]";
+  //返回格式：yyyy-MM-dd hh:mm
+}

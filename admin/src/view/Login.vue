@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$http.post('/user/signIn.json', {
+      this.$http.post('/api/user/signIn.json', {
         userName: this.form.name,
         password: this.form.password,
         source: 'form'

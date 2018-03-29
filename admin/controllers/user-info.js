@@ -34,7 +34,6 @@ module.exports = {
       session.isLogin = true
       session.userName = userResult.name
       session.userId = userResult.id
-      console.log(3333333)
     }
     ctx.body = result
   },

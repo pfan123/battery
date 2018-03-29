@@ -14,7 +14,7 @@ export default {
   },
   beforeCreate() {
     //判断是否登陆跳转
-    this.$http.get('/user/getUserInfo.json').then( ({ data }) => {
+    this.$http.get('/api/user/getUserInfo.json').then( ({ data }) => {
       if(data.data){
         this.userName = data.data.userName
         this.$router.push({ path: '/dashboard' })

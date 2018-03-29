@@ -9,17 +9,28 @@ const pool = mysql.createPool({
   database : config.DATABASE
 })
 
-let query = function( sql, values ) {
+/**
+ * 定义错误信息格式， -1 操作失败
+ * @param {*} err 
+ */
+let errMes = err => {
+  return {
+    code: -1,
+    err
+  }
+}
 
+
+let query = function( sql, values ) {
   return new Promise(( resolve, reject ) => {
     pool.getConnection(function(err, connection) {
       if (err) {
-        resolve( err )
+        resolve( errMes(err) )
       } else {
         connection.query(sql, values, ( err, rows) => {
 
           if ( err ) {
-            reject( err )
+            reject( errMes(err) )
           } else {
             resolve( rows )
           }
@@ -38,9 +49,13 @@ let createTable = function( sql ) {
 
 let findDataById = function( table,  id ) {
   let  _sql =  "SELECT * FROM ?? WHERE id = ? "
-  return query( _sql, [ table, id, start, end ] )
+  return query( _sql, [ table, id ] )
 }
 
+let findDataByCategroy = function( table,  categroy ) {
+  let  _sql =  "SELECT * FROM ?? WHERE categroy = ? "
+  return query( _sql, [ table, categroy ] )
+}
 
 let findDataByPage = function( table, keys, start, end ) {
   let  _sql =  "SELECT ?? FROM ??  LIMIT ? , ?"
@@ -80,6 +95,7 @@ module.exports = {
   query,
   createTable,
   findDataById,
+  findDataByCategroy,
   findDataByPage,
   deleteDataById,
   insertData,

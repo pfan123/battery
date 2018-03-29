@@ -1,30 +1,46 @@
 <template>
   <div class="news_wrapper">
-    <bat-image :image="image"></bat-image>
-    <bat-news></bat-news>
+    <div v-if="banners.length > 1">
+      <bat-banner :banners="banners"></bat-banner>
+    </div>  
+    <div v-else>
+      <bat-image v:if="banners.length == 1" :image="banners[0]"></bat-image>
+    </div> 
+    <bat-newslist :newslist="List"></bat-newslist>
   </div>
 </template>
 
 <script>
+    import Banner from '../components/common/Banner.vue'
     import Image from '../components/common/Image.vue'
-    import News from '../components/common/News.vue'
+    import NewsList from '../components/NewsList.vue'
 
     export default {
       name: 'news',
+      asyncData ({ store, type }) {
+        return store.dispatch('FETCH_PAGE_DATA', { type })
+      },  
+      
+      computed: {
+        banners () {
+          return this.$store.getters.bannerList
+        },
+        List () {
+          return this.$store.getters.newsList
+        }        
+      },   
+            
       data() {
-          return {
-            msg: 'Welcome to Your Vue.js App',
-            image:{
-                height: '480px',
-                src: '/public/images/news_banner.jpg'
-            }                      
-          };
+          return {   
+
+          }
       },
 
       components: { 
-        'bat-image': Image,
-        'bat-news': News
-      },
+        'bat-banner': Banner,
+        'bat-image': Image, 
+        'bat-newslist': NewsList
+      },    
 
       created () {
 

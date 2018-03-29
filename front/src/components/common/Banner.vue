@@ -14,8 +14,10 @@
 export default {
   name: 'bat-banner',
   props: {
-    banners: Array,
-    required: true
+    banners: {
+        type: Array,
+        required: true
+    }    
   },
   data() {
       return {

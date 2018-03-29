@@ -1,5 +1,5 @@
 <template>
-    <div class="index_image" :style="{ height: image.height }">
+    <div class="index_image" >
         <span v-bind:style="{ backgroundImage: 'url(' + image.src + ')' }"></span>  
     </div>
 </template>
@@ -8,8 +8,10 @@
 export default {
   name: 'bat-image',
   props: {
-    image: Object,
-    required: true
+    image: {
+      type: Object,
+      required: true      
+    }
   },
   data() {
       return {
@@ -18,7 +20,7 @@ export default {
   },
 
   components: {
-
+    
   },
 
   created () {
@@ -38,6 +40,7 @@ export default {
 <style lang="stylus">
   .index_image
     width 100%
+    height 480px
     
   .index_image span 
     height 100%

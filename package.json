@@ -26,9 +26,10 @@
   "dependencies": {
     "axios": "^0.17.1",
     "babel-plugin-transform-runtime": "^6.23.0",
+    "busboy": "^0.2.14",
     "compression": "^1.6.2",
     "cross-env": "^5.1.1",
-    "element-ui": "^1.4.12",
+    "element-ui": "^2.2.1",
     "es6-promise": "^4.1.0",
     "express": "^4.15.2",
     "firebase": "^3.7.2",
@@ -44,6 +45,7 @@
     "koa-static-cache": "^5.1.1",
     "koa-webpack-middleware": "^1.0.7",
     "lru-cache": "^4.0.2",
+    "my-vue-editor": "^1.0.10",
     "mysql": "^2.15.0",
     "opn": "^5.1.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
@@ -103,7 +105,8 @@
     "webpack-dev-middleware": "^1.12.2",
     "webpack-hot-middleware": "^2.21.0",
     "webpack-merge": "^4.1.1",
-    "webpack-node-externals": "^1.6.0"
+    "webpack-node-externals": "^1.6.0",
+    "ws": "^3.3.2"
   },
   "config": {
     "validate-commit-msg": {
