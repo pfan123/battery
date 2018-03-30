@@ -4,4 +4,6 @@ npm-debug.log
 firekylin.sql
 /node_modules/
 /front/dist
+/admin/dist
 yarn.lock
+./logs/**

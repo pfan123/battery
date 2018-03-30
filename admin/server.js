@@ -201,9 +201,9 @@ router.post('/api/dashboard/uploadImg.json', async (ctx) => {
 
 
 
-
 if (isProd) {
-  router.get('/dashboard/', (ctx, next) => {
+  // router.get('/dashboard/', (ctx, next) => {
+  router.get('/', (ctx, next) => {
       return new Promise( (resolve, reject) => {
         render(ctx, next, resolve)
       })

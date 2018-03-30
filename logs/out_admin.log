@@ -1,0 +1,123 @@
+2018-03-30 10:02 +08:00: server started at localhost:8180
+2018-03-30 10:02 +08:00:   <-- GET /
+2018-03-30 10:02 +08:00: 整个服务端渲染的耗时 whole request: 6ms
+2018-03-30 10:02 +08:00:   --> GET / 200 26ms 540b
+2018-03-30 10:02 +08:00:   <-- GET /
+2018-03-30 10:02 +08:00: 整个服务端渲染的耗时 whole request: 1ms
+  --> GET / 200 4ms 540b
+2018-03-30 10:02 +08:00:   <-- GET /api/user/getUserInfo.json
+2018-03-30 10:02 +08:00: session= { isLogin: true, userName: 'admin', userId: 1 }
+2018-03-30 10:02 +08:00:   <-- GET /api/dashboard/getSysInfo.json
+2018-03-30 10:02 +08:00:   --> GET /api/user/getUserInfo.json 200 18ms 121b
+2018-03-30 10:02 +08:00:   --> GET /api/dashboard/getSysInfo.json 200 15ms 370b
+2018-03-30 10:02 +08:00:   <-- GET /
+2018-03-30 10:02 +08:00: 整个服务端渲染的耗时 whole request: 3ms
+2018-03-30 10:02 +08:00:   --> GET / 200 4ms 540b
+2018-03-30 10:02 +08:00:   <-- GET /api/user/getUserInfo.json
+2018-03-30 10:02 +08:00: session= { isLogin: true, userName: 'admin', userId: 1 }
+2018-03-30 10:02 +08:00:   --> GET /api/user/getUserInfo.json 200 4ms 121b
+2018-03-30 10:02 +08:00:   <-- GET /api/dashboard/getSysInfo.json
+2018-03-30 10:02 +08:00:   --> GET /api/dashboard/getSysInfo.json 200 5ms 370b
+2018-03-30 10:02 +08:00:   <-- GET /api/dashboard/getImgList.json
+2018-03-30 10:02 +08:00:   --> GET /api/dashboard/getImgList.json 200 6ms 1.54kb
+2018-03-30 10:02 +08:00:   <-- GET /api/dashboard/getProductsCateList.json
+2018-03-30 10:02 +08:00:   --> GET /api/dashboard/getProductsCateList.json 200 6ms 255b
+2018-03-30 10:02 +08:00:   <-- POST /api/dashboard/getCateProductsList.json
+2018-03-30 10:02 +08:00:   --> POST /api/dashboard/getCateProductsList.json 200 7ms 2.45kb
+2018-03-30 10:02 +08:00:   <-- GET /api/dashboard/getNewsList.json
+2018-03-30 10:02 +08:00:   --> GET /api/dashboard/getNewsList.json 200 20ms 754b
+2018-03-30 10:02 +08:00:   <-- GET /api/dashboard/getFaqList.json
+2018-03-30 10:02 +08:00:   --> GET /api/dashboard/getFaqList.json 200 24ms 1016b
+2018-03-30 10:02 +08:00:   <-- GET /api/dashboard/getNewsList.json
+2018-03-30 10:02 +08:00:   --> GET /api/dashboard/getNewsList.json 200 4ms 754b
+2018-03-30 10:02 +08:00:   <-- GET /api/dashboard/getProductsCateList.json
+2018-03-30 10:02 +08:00:   --> GET /api/dashboard/getProductsCateList.json 200 4ms 255b
+2018-03-30 10:02 +08:00:   <-- POST /api/dashboard/getCateProductsList.json
+2018-03-30 10:02 +08:00:   --> POST /api/dashboard/getCateProductsList.json 200 5ms 2.45kb
+2018-03-30 10:02 +08:00:   <-- GET /api/dashboard/getImgList.json
+2018-03-30 10:02 +08:00:   --> GET /api/dashboard/getImgList.json 200 2ms 1.54kb
+2018-03-30 10:02 +08:00:   <-- GET /api/dashboard/getProductsCateList.json
+2018-03-30 10:02 +08:00:   --> GET /api/dashboard/getProductsCateList.json 200 3ms 255b
+2018-03-30 10:02 +08:00:   <-- POST /api/dashboard/getCateProductsList.json
+2018-03-30 10:02 +08:00:   --> POST /api/dashboard/getCateProductsList.json 200 5ms 2.45kb
+2018-03-30 10:02 +08:00:   <-- GET /api/dashboard/getNewsList.json
+2018-03-30 10:02 +08:00:   --> GET /api/dashboard/getNewsList.json 200 63ms 754b
+2018-03-30 10:02 +08:00:   <-- GET /api/dashboard/getFaqList.json
+2018-03-30 10:02 +08:00:   --> GET /api/dashboard/getFaqList.json 200 3ms 1016b
+2018-03-30 10:06 +08:00:   <-- GET /
+2018-03-30 10:06 +08:00: 整个服务端渲染的耗时 whole request: 1ms
+2018-03-30 10:06 +08:00:   --> GET / 200 2ms 540b
+2018-03-30 10:06 +08:00:   <-- GET /api/user/getUserInfo.json
+2018-03-30 10:06 +08:00: session= { isLogin: true, userName: 'admin', userId: 1 }
+2018-03-30 10:06 +08:00:   --> GET /api/user/getUserInfo.json 200 3ms 121b
+2018-03-30 10:06 +08:00:   <-- GET /api/dashboard/getSysInfo.json
+2018-03-30 10:06 +08:00:   --> GET /api/dashboard/getSysInfo.json 200 11ms 370b
+2018-03-30 10:06 +08:00:   <-- GET /api/dashboard/getProductsCateList.json
+2018-03-30 10:06 +08:00:   --> GET /api/dashboard/getProductsCateList.json 200 1ms 255b
+2018-03-30 10:06 +08:00:   <-- POST /api/dashboard/getCateProductsList.json
+2018-03-30 10:06 +08:00:   --> POST /api/dashboard/getCateProductsList.json 200 4ms 2.45kb
+2018-03-30 10:06 +08:00:   <-- GET /api/dashboard/getNewsList.json
+2018-03-30 10:06 +08:00:   --> GET /api/dashboard/getNewsList.json 200 3ms 754b
+2018-03-30 10:06 +08:00:   <-- GET /api/dashboard/getImgList.json
+2018-03-30 10:06 +08:00:   --> GET /api/dashboard/getImgList.json 200 5ms 1.54kb
+2018-03-30 10:06 +08:00:   <-- GET /api/dashboard/getSysInfo.json
+2018-03-30 10:06 +08:00:   --> GET /api/dashboard/getSysInfo.json 200 23ms 370b
+2018-03-30 10:06 +08:00:   <-- GET /api/dashboard/getImgList.json
+2018-03-30 10:06 +08:00:   --> GET /api/dashboard/getImgList.json 200 2ms 1.54kb
+2018-03-30 10:06 +08:00:   <-- GET /api/dashboard/getProductsCateList.json
+2018-03-30 10:06 +08:00:   --> GET /api/dashboard/getProductsCateList.json 200 2ms 255b
+2018-03-30 10:06 +08:00:   <-- POST /api/dashboard/getCateProductsList.json
+2018-03-30 10:06 +08:00:   --> POST /api/dashboard/getCateProductsList.json 200 3ms 2.45kb
+2018-03-30 10:07 +08:00:   <-- GET /api/dashboard/getImgList.json
+2018-03-30 10:07 +08:00:   --> GET /api/dashboard/getImgList.json 200 5ms 1.54kb
+2018-03-30 10:07 +08:00:   <-- GET /api/dashboard/getProductsCateList.json
+2018-03-30 10:07 +08:00:   --> GET /api/dashboard/getProductsCateList.json 200 2ms 255b
+2018-03-30 10:07 +08:00:   <-- POST /api/dashboard/getCateProductsList.json
+2018-03-30 10:07 +08:00:   --> POST /api/dashboard/getCateProductsList.json 200 9ms 2.45kb
+2018-03-30 10:07 +08:00:   <-- GET /api/dashboard/getFaqList.json
+2018-03-30 10:07 +08:00:   --> GET /api/dashboard/getFaqList.json 200 5ms 1016b
+2018-03-30 10:07 +08:00:   <-- GET /api/dashboard/getNewsList.json
+2018-03-30 10:07 +08:00:   --> GET /api/dashboard/getNewsList.json 200 21ms 754b
+2018-03-30 10:07 +08:00:   <-- GET /api/dashboard/getProductsCateList.json
+2018-03-30 10:07 +08:00:   --> GET /api/dashboard/getProductsCateList.json 200 2ms 255b
+2018-03-30 10:07 +08:00:   <-- POST /api/dashboard/getCateProductsList.json
+2018-03-30 10:07 +08:00:   --> POST /api/dashboard/getCateProductsList.json 200 2ms 2.45kb
+2018-03-30 10:07 +08:00:   <-- GET /api/dashboard/getImgList.json
+2018-03-30 10:07 +08:00:   --> GET /api/dashboard/getImgList.json 200 1ms 1.54kb
+2018-03-30 10:07 +08:00:   <-- GET /api/dashboard/getSysInfo.json
+2018-03-30 10:07 +08:00:   --> GET /api/dashboard/getSysInfo.json 200 6ms 370b
+2018-03-30 10:09 +08:00: server started at localhost:8180
+2018-03-30 10:09 +08:00:   <-- GET /
+2018-03-30 10:09 +08:00: 整个服务端渲染的耗时 whole request: 6ms
+2018-03-30 10:09 +08:00:   --> GET / 200 23ms 540b
+2018-03-30 10:09 +08:00:   <-- GET /api/user/getUserInfo.json
+2018-03-30 10:09 +08:00: session= { isLogin: true, userName: 'admin', userId: 1 }
+2018-03-30 10:09 +08:00:   --> GET /api/user/getUserInfo.json 200 12ms 121b
+2018-03-30 10:09 +08:00:   <-- GET /api/dashboard/getSysInfo.json
+2018-03-30 10:09 +08:00:   --> GET /api/dashboard/getSysInfo.json 200 18ms 370b
+2018-03-30 10:09 +08:00:   <-- GET /
+2018-03-30 10:09 +08:00: 整个服务端渲染的耗时 whole request: 1ms
+2018-03-30 10:09 +08:00:   --> GET / 200 3ms 540b
+2018-03-30 10:09 +08:00:   <-- GET /api/user/getUserInfo.json
+2018-03-30 10:09 +08:00: session= { isLogin: true, userName: 'admin', userId: 1 }
+2018-03-30 10:09 +08:00:   <-- GET /api/dashboard/getSysInfo.json
+2018-03-30 10:09 +08:00:   --> GET /api/user/getUserInfo.json 200 28ms 121b
+2018-03-30 10:09 +08:00:   --> GET /api/dashboard/getSysInfo.json 200 29ms 370b
+2018-03-30 10:09 +08:00:   <-- GET /api/dashboard/getSysInfo.json
+2018-03-30 10:09 +08:00:   <-- GET /api/dashboard/getNewsAbstract.json
+2018-03-30 10:09 +08:00:   <-- GET /api/dashboard/getProductsList.json
+2018-03-30 10:09 +08:00:   --> GET /api/dashboard/getSysInfo.json 200 13ms 370b
+2018-03-30 10:09 +08:00:   <-- GET /api/dashboard/getSysInfo.json
+2018-03-30 10:09 +08:00:   <-- GET /api/dashboard/getSysInfo.json
+2018-03-30 10:09 +08:00:   <-- POST /api/dashboard/getImgListCate.json
+2018-03-30 10:09 +08:00:   --> GET /api/dashboard/getNewsAbstract.json 200 47ms 1.24kb
+2018-03-30 10:09 +08:00:   <-- POST /api/dashboard/getImgListCate.json
+2018-03-30 10:09 +08:00:   <-- GET /api/dashboard/getProductsList.json
+2018-03-30 10:09 +08:00:   <-- GET /api/dashboard/getNewsAbstract.json
+2018-03-30 10:09 +08:00:   --> GET /api/dashboard/getProductsList.json 200 49ms 3.01kb
+2018-03-30 10:09 +08:00:   --> GET /api/dashboard/getSysInfo.json 200 44ms 370b
+2018-03-30 10:09 +08:00:   --> POST /api/dashboard/getImgListCate.json 200 10ms 565b
+2018-03-30 10:09 +08:00:   --> GET /api/dashboard/getSysInfo.json 200 46ms 370b
+2018-03-30 10:09 +08:00:   --> POST /api/dashboard/getImgListCate.json 200 19ms 565b
+2018-03-30 10:09 +08:00:   --> GET /api/dashboard/getNewsAbstract.json 200 14ms 1.24kb
+2018-03-30 10:09 +08:00:   --> GET /api/dashboard/getProductsList.json 200 21ms 3.01kb
