@@ -1,9 +1,10 @@
 <a name=""></a>
-#  (2018-03-30)
+#  (2018-04-01)
 
 
 ### Bug Fixes
 
+* **battery:** 调整 ([b6e7f95](https://github.com/pfan123/o2Blog/commit/b6e7f95))
 * **o2Blog:** install transform-runtime polyfill ([8fec04f](https://github.com/pfan123/o2Blog/commit/8fec04f))
 * **search:** 调整结构 ([733bf97](https://github.com/pfan123/o2Blog/commit/733bf97))
 
