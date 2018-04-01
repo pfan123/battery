@@ -6,4 +6,4 @@ firekylin.sql
 /front/dist
 /admin/dist
 yarn.lock
-./logs/**
+/logs/**

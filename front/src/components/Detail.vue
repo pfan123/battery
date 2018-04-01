@@ -3,14 +3,14 @@
         <div class="detail_top g_cf">
             <div class="detail_top_lf">
                 <div class="detail_top_pic">
-                    <img :src="proContent.src" alt="">
+                    <img :src="curSrc" alt="">
                 </div>
                 <div class="detail_style_pic g_cf">
-                    <span v-if="proContent.src1"><img :src="proContent.src1" alt=""></span>
-                    <span v-if="proContent.src2"><img :src="proContent.src2" alt=""></span>
-                    <span v-if="proContent.src3"><img :src="proContent.src3" alt=""></span>
-                    <span v-if="proContent.src4"><img :src="proContent.src4" alt=""></span>
-                    <span v-if="proContent.src5"><img :src="proContent.src5" alt=""></span>
+                    <span v-if="proContent.src1" :class="[curSrc == proContent.src1 ? 'actived' : '']" @mouseover="onMouseOver(proContent.src1)"><img :src="proContent.src1" alt=""></span>
+                    <span v-if="proContent.src2" :class="[curSrc == proContent.src2 ? 'actived' : '']" @mouseover="onMouseOver(proContent.src2)"><img :src="proContent.src2" alt=""></span>
+                    <span v-if="proContent.src3" :class="[curSrc == proContent.src3 ? 'actived' : '']" @mouseover="onMouseOver(proContent.src3)"><img :src="proContent.src3" alt=""></span>
+                    <span v-if="proContent.src4" :class="[curSrc == proContent.src4 ? 'actived' : '']" @mouseover="onMouseOver(proContent.src4)"><img :src="proContent.src4" alt=""></span>
+                    <span v-if="proContent.src5" :class="[curSrc == proContent.src5 ? 'actived' : '']" @mouseover="onMouseOver(proContent.src5)"><img :src="proContent.src5" alt=""></span>
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
     },   
     data() {
         return {
-
+            curSrc: ""
         }
     },
 
@@ -59,16 +59,17 @@
     },
 
     created () {
-
+        this.curSrc = this.proContent.src
     },
 
     mounted () {
-
+        
     },
 
     methods: {
-        
-
+        onMouseOver(value){
+            this.curSrc = value
+        }   
     }
   }
 </script>
@@ -89,7 +90,8 @@
         width 472px
         float left
         .detail_top_pic
-            height 472px
+            height 470px
+            _height 472px
             border 1px solid #eee            
             margin-bottom 18px
             img     
@@ -107,6 +109,8 @@
             float left
             margin-right 18px
             cursor pointer
+            &.actived
+                border-color #e6382f
             &:last-child
                 margin 0
             img 

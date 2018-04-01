@@ -10,6 +10,10 @@
       <el-input v-model="sysInfo.detail" placeholder="请输入站点描述" width="400"></el-input>
     </div>    
     <div class="sys_input_block">
+      <h4>站点关键词：</h4>
+      <el-input v-model="sysInfo.keyword" placeholder="请输入站点关键词" width="400"></el-input>
+    </div>       
+    <div class="sys_input_block">
       <h4>LOGO（390x40）：</h4>
       <img v-if="sysInfo.logo1" :src="sysInfo.logo1" alt="" class="logo1_size">
       <el-input class="sys_input" :disabled="true" v-model="sysInfo.logo1" placeholder="展示logo路径" width="400"></el-input>
@@ -50,11 +54,7 @@
         <el-button size="small" type="primary">点击上传</el-button>
         <div slot="tip" class="el-upload__tip">上传大小标准 <b style="color: red">144x64</b>，只能上传jpg/png文件，且不超过500kb</div>
       </el-upload>   
-    </div>            
-    <div class="sys_input_block">
-      <h4>站点关键词：</h4>
-      <el-input v-model="sysInfo.keyword" placeholder="请输入站点关键词" width="400"></el-input>
-    </div>   
+    </div>           
 
     <el-button type="primary" @click="onSubmit">提交</el-button>   
 
