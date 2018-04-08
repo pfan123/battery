@@ -3,7 +3,5 @@ npm-debug.log
 .DS_Store
 firekylin.sql
 /node_modules/
-#/front/dist
-#/admin/dist
 yarn.lock
 /logs/**

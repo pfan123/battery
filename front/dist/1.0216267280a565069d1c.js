@@ -565,8 +565,8 @@ var Question_Component = Question_normalizeComponent(
 
   methods: {}
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-9ec04630","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/views/FAQ.vue
-var FAQ_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"index_wrapper"},[(_vm.banners.length > 1)?_c('div',[_c('bat-banner',{attrs:{"banners":_vm.banners}})],1):_c('div',[_c('bat-image',{attrs:{"v:if":"banners.length == 1","image":_vm.banners[0]}})],1),_c('bat-feature',{attrs:{"feats":_vm.feats}}),_c('bat-question',{attrs:{"faqList":_vm.faqList}}),_c('bat-form')],1)}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-6d6b23f5","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/views/FAQ.vue
+var FAQ_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"index_wrapper"},[(_vm.banners.length > 1)?_c('div',[_c('bat-banner',{attrs:{"banners":_vm.banners}})],1):(_vm.banners.length == 1)?_c('div',[_c('bat-image',{attrs:{"image":_vm.banners[0]}})],1):_vm._e(),_c('bat-feature',{attrs:{"feats":_vm.feats}}),_c('bat-question',{attrs:{"faqList":_vm.faqList}}),_c('bat-form')],1)}
 var FAQ_staticRenderFns = []
 var FAQ_esExports = { render: FAQ_render, staticRenderFns: FAQ_staticRenderFns }
 /* harmony default export */ var views_FAQ_defaultExport = (FAQ_esExports);

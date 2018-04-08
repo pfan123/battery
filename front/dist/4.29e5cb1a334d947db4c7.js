@@ -1,4 +1,4 @@
-webpackJsonp([3],{
+webpackJsonp([4],{
 
 /***/ 164:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -162,27 +162,30 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 180:
+/***/ 178:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 181:
+/***/ 179:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 193:
+/***/ 192:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./front/src/components/NewsList.vue
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./front/src/components/Map.vue
+//
+//
+//
 //
 //
 //
@@ -202,13 +205,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ var NewsList_defaultExport = ({
-    name: 'bat-news',
+/* harmony default export */ var Map_defaultExport = ({
+    name: 'bat-mission',
 
     props: {
-        newslist: {
-            type: Array,
+        mapInfo: {
+            type: Object,
             required: true
+        }
+    },
+
+    computed: {
+        isEnglish: function isEnglish() {
+            return this.$store.getters.getIsEnglish;
         }
     },
 
@@ -216,12 +225,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {};
     },
 
-
-    computed: {
-        isEnglish: function isEnglish() {
-            return this.$store.getters.getIsEnglish;
-        }
-    },
 
     components: {},
 
@@ -231,14 +234,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {}
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-544f2e58","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/components/NewsList.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"news"},[_c('h3',{staticClass:"news_title"},[_vm._v(_vm._s(_vm.isEnglish ? 'NEWS' : '新闻中心'))]),_c('div',{staticClass:"newslist_wrap g_cf"},_vm._l((_vm.newslist),function(item){return _c('a',{staticClass:"item g_cf",attrs:{"href":'/newsarticles/'+item.id}},[_c('div',{staticClass:"item_img"},[_c('img',{attrs:{"src":item.src}})]),_c('div',{staticClass:"item_content"},[_c('div',{staticClass:"title line1"},[_vm._v(_vm._s(_vm.isEnglish ? item.ftitle : item.title))]),_c('div',{staticClass:"date"},[_vm._v(_vm._s(item.date))]),_c('div',{staticClass:"desc"},[_vm._v(_vm._s(_vm.isEnglish ? item.fabstract : item.abstract))])])])}))])}
-var staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-186e5028","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/components/Map.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"map"},[_c('div',{staticClass:"map_wrap"},[_c('div',{staticClass:"map_float"},[_c('div',{staticClass:"map_phone"},[_vm._v(_vm._s(_vm.isEnglish ? 'Service hotline' : '服务热线')+": "),_c('span',[_vm._v("40088-10115")])]),_c('div',{staticClass:"map_sel"},[_c('select',_vm._l((_vm.mapInfo.branch),function(item){return _c('option',{attrs:{"selected":""},domProps:{"value":item.id}},[_vm._v(_vm._s(_vm.isEnglish ? item.ftitle : item.title))])}))]),_c('div',{staticClass:"map_adress",attrs:{"id":"map_adress"}},[_vm._v(_vm._s(_vm.isEnglish ? _vm.mapInfo.ftitle : _vm.mapInfo.address)+"\n                "),_c('br'),_vm._v(_vm._s(_vm.isEnglish ? 'Landline phone' : '联系方式')+": "+_vm._s(_vm.mapInfo.telnum))])]),_vm._m(0)])])}
+var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"map_content"},[_c('img',{attrs:{"src":"/public/images/map.jpg","alt":""}})])}]
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var components_NewsList_defaultExport = (esExports);
-// CONCATENATED MODULE: ./front/src/components/NewsList.vue
+/* harmony default export */ var components_Map_defaultExport = (esExports);
+// CONCATENATED MODULE: ./front/src/components/Map.vue
 function injectStyle (ssrContext) {
-  __webpack_require__(181)
+  __webpack_require__(179)
 }
 var normalizeComponent = __webpack_require__(14)
 /* script */
@@ -255,17 +258,17 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  NewsList_defaultExport,
-  components_NewsList_defaultExport,
+  Map_defaultExport,
+  components_Map_defaultExport,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var src_components_NewsList_defaultExport = (Component.exports);
+/* harmony default export */ var src_components_Map_defaultExport = (Component.exports);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./front/src/views/News.vue
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./front/src/views/ContactUs.vue
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_common_Banner_vue__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_common_Image_vue__ = __webpack_require__(166);
 //
@@ -285,34 +288,37 @@ var Component = normalizeComponent(
 
 
 
-/* harmony default export */ var News_defaultExport = ({
-  name: 'news',
+/* harmony default export */ var ContactUs_defaultExport = ({
+  name: 'contact',
   asyncData: function asyncData(_ref) {
     var store = _ref.store,
         type = _ref.type;
 
     return store.dispatch('FETCH_PAGE_DATA', { type: type });
   },
-
-
-  computed: {
-    banners: function banners() {
-      return this.$store.getters.bannerList;
-    },
-    List: function List() {
-      return this.$store.getters.newsList;
-    }
-  },
-
   data: function data() {
-    return {};
+    return {
+      mapInfo: {
+        tel: '40088-10115',
+        branch: [{ title: '深圳总部', ftitle: 'Shenzhen headquarters', id: 0 }],
+        address: '广东省深圳市龙华区三联路跟清泉路交汇处',
+        faddress: 'guangdong province ',
+        telnum: '40088-10115'
+      }
+    };
   },
 
 
   components: {
     'bat-banner': __WEBPACK_IMPORTED_MODULE_0__components_common_Banner_vue__["a" /* default */],
     'bat-image': __WEBPACK_IMPORTED_MODULE_1__components_common_Image_vue__["a" /* default */],
-    'bat-newslist': src_components_NewsList_defaultExport
+    'bat-map': src_components_Map_defaultExport
+  },
+
+  computed: {
+    banners: function banners() {
+      return this.$store.getters.bannerList;
+    }
   },
 
   created: function created() {},
@@ -321,39 +327,39 @@ var Component = normalizeComponent(
 
   methods: {}
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-4b66bedc","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/views/News.vue
-var News_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"news_wrapper"},[(_vm.banners.length > 1)?_c('div',[_c('bat-banner',{attrs:{"banners":_vm.banners}})],1):_c('div',[_c('bat-image',{attrs:{"v:if":"banners.length == 1","image":_vm.banners[0]}})],1),_c('bat-newslist',{attrs:{"newslist":_vm.List}})],1)}
-var News_staticRenderFns = []
-var News_esExports = { render: News_render, staticRenderFns: News_staticRenderFns }
-/* harmony default export */ var views_News_defaultExport = (News_esExports);
-// CONCATENATED MODULE: ./front/src/views/News.vue
-function News_injectStyle (ssrContext) {
-  __webpack_require__(180)
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-2ea29f7f","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/views/ContactUs.vue
+var ContactUs_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"contact_wrapper"},[(_vm.banners.length > 1)?_c('div',[_c('bat-banner',{attrs:{"banners":_vm.banners}})],1):(_vm.banners.length == 1)?_c('div',[_c('bat-image',{attrs:{"image":_vm.banners[0]}})],1):_vm._e(),_c('bat-map',{attrs:{"mapInfo":_vm.mapInfo}})],1)}
+var ContactUs_staticRenderFns = []
+var ContactUs_esExports = { render: ContactUs_render, staticRenderFns: ContactUs_staticRenderFns }
+/* harmony default export */ var views_ContactUs_defaultExport = (ContactUs_esExports);
+// CONCATENATED MODULE: ./front/src/views/ContactUs.vue
+function ContactUs_injectStyle (ssrContext) {
+  __webpack_require__(178)
 }
-var News_normalizeComponent = __webpack_require__(14)
+var ContactUs_normalizeComponent = __webpack_require__(14)
 /* script */
 
 
 /* template */
 
 /* template functional */
-var News___vue_template_functional__ = false
+var ContactUs___vue_template_functional__ = false
 /* styles */
-var News___vue_styles__ = News_injectStyle
+var ContactUs___vue_styles__ = ContactUs_injectStyle
 /* scopeId */
-var News___vue_scopeId__ = null
+var ContactUs___vue_scopeId__ = null
 /* moduleIdentifier (server only) */
-var News___vue_module_identifier__ = null
-var News_Component = News_normalizeComponent(
-  News_defaultExport,
-  views_News_defaultExport,
-  News___vue_template_functional__,
-  News___vue_styles__,
-  News___vue_scopeId__,
-  News___vue_module_identifier__
+var ContactUs___vue_module_identifier__ = null
+var ContactUs_Component = ContactUs_normalizeComponent(
+  ContactUs_defaultExport,
+  views_ContactUs_defaultExport,
+  ContactUs___vue_template_functional__,
+  ContactUs___vue_styles__,
+  ContactUs___vue_scopeId__,
+  ContactUs___vue_module_identifier__
 )
 
-/* harmony default export */ __webpack_exports__["default"] = (News_Component.exports);
+/* harmony default export */ __webpack_exports__["default"] = (ContactUs_Component.exports);
 
 
 /***/ })

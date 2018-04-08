@@ -644,8 +644,8 @@ var News_Component = News_normalizeComponent(
 
   methods: {}
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-08ce592c","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/views/Index.vue
-var Index_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"index_wrapper"},[(_vm.banners.length > 1)?_c('div',[_c('bat-banner',{attrs:{"banners":_vm.banners}})],1):_c('div',[_c('bat-image',{attrs:{"v:if":"banners.length == 1","image":_vm.banners[0]}})],1),_c('bat-feature',{attrs:{"feats":_vm.feats}}),_c('bat-product',{attrs:{"homeProList":_vm.homeProList}}),_c('bat-profile',{attrs:{"profileInfo":_vm.profileInfo}}),_c('bat-news',{attrs:{"list":_vm.newLists}})],1)}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-5e9cbbd3","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/views/Index.vue
+var Index_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"index_wrapper"},[(_vm.banners.length > 1)?_c('div',[_c('bat-banner',{attrs:{"banners":_vm.banners}})],1):(_vm.banners.length == 1)?_c('div',[_c('bat-image',{attrs:{"image":_vm.banners[0]}})],1):_vm._e(),_c('bat-feature',{attrs:{"feats":_vm.feats}}),_c('bat-product',{attrs:{"homeProList":_vm.homeProList}}),_c('bat-profile',{attrs:{"profileInfo":_vm.profileInfo}}),_c('bat-news',{attrs:{"list":_vm.newLists}})],1)}
 var Index_staticRenderFns = []
 var Index_esExports = { render: Index_render, staticRenderFns: Index_staticRenderFns }
 /* harmony default export */ var views_Index_defaultExport = (Index_esExports);

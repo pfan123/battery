@@ -1,6 +1,7 @@
 import axios from 'axios'
 import dateTime from '../util/datetime'
 const host = "http://127.0.0.1:8180"
+const domain = "//admin.cygereen.com"
 
 /**
  * getSysInfo 获取系统信息
@@ -10,9 +11,9 @@ export const getSysInfo = () => {
     axios.get(`${host}/api/dashboard/getSysInfo.json`).then( res => {
       if(res.status == 200){
         let json = res.data.data
-        res.data.data.logo1 = `${host}` + res.data.data.logo1
-        res.data.data.logo2 = `${host}` + res.data.data.logo2
-        res.data.data.favicon = `${host}` + res.data.data.favicon
+        res.data.data.logo1 = `${domain}` + res.data.data.logo1
+        res.data.data.logo2 = `${domain}` + res.data.data.logo2
+        res.data.data.favicon = `${domain}` + res.data.data.favicon
         resolve(json)
       }else{
         reject({})
@@ -32,7 +33,7 @@ export const getBannerList = (type) => {
         let json = res.data.data
         json = json.map( item => {
           return {
-            src: `${host}` + item.src,
+            src: `${domain}` + item.src,
             link: item.link,
             tags: item.tags
           }
@@ -64,7 +65,7 @@ export const getHomeProductsList = ( ) => {
             ftitle: item.ftitle,
             abstract: item.abstract,
             fabstract: item.fabstract,
-            src: `${host}` + (item.src1||item.src2 || item.src3 || item.src4 || item.src5),
+            src: `${domain}` + (item.src1||item.src2 || item.src3 || item.src4 || item.src5),
             date: dateTime.parseStampToFormat(Number(item.modified_time), 'YYYY-MM-DD hh:mm:ss')             
           }
         })
@@ -105,9 +106,10 @@ export const getProductsCateList = ( ) => {
  * getProductsCateList 获取产品分类列表
  * @param 
  */
-export const getCategoryList = ( category ) => {
+export const getCategoryList = ( category, sdomain ) => {
+  let vhost = sdomain || host
   return new Promise( (resolve, reject) => {
-    axios.post(`${host}/api/dashboard/getCateProductsList.json`, { category }).then( res => {
+    axios.post(`${vhost}/api/dashboard/getCateProductsList.json`, { category }).then( res => {
       if(res.status == 200){
         let json = res.data.data
         json.sort( (a, b) => {
@@ -117,7 +119,7 @@ export const getCategoryList = ( category ) => {
           return d - c
         })
         json.forEach( item => {
-          item.src = `${host}` + item.src
+          item.src = `${domain}` + item.src
         })
         resolve(json)
       }else{
@@ -147,12 +149,12 @@ export const getProductsInfo = (page) => {
             fcontent: json.fcontent,
             link: json.link,
             price: json.price,
-            src: `${host}` + (json.src1 || json.src2 || json.src3 || json.src4 || json.src5),
-            src1:  json.src1 ? `${host}` + json.src1 : null,        
-            src2: json.src2 ? `${host}` + json.src2 : null,        
-            src3: json.src3 ? `${host}` + json.src3 : null,        
-            src4: json.src4 ? `${host}` + json.src4 : null,       
-            src5: json.src5 ? `${host}` + json.src5 : null      
+            src: `${domain}` + (json.src1 || json.src2 || json.src3 || json.src4 || json.src5),
+            src1:  json.src1 ? `${domain}` + json.src1 : null,        
+            src2: json.src2 ? `${domain}` + json.src2 : null,        
+            src3: json.src3 ? `${domain}` + json.src3 : null,        
+            src4: json.src4 ? `${domain}` + json.src4 : null,       
+            src5: json.src5 ? `${domain}` + json.src5 : null      
         }
         resolve(json)
       }else{
@@ -181,7 +183,7 @@ export const getNewsList = (type) => {
             ftitle: item.ftitle,
             abstract: item.abstract,
             fabstract: item.fabstract,
-            src: `${host}` + item.src,
+            src: `${domain}` + item.src,
             date: dateTime.parseStampToFormat(Number(item.modified_time), 'YYYY-MM-DD hh:mm:ss')             
           }
         })
@@ -210,7 +212,7 @@ export const getNewsContent = (page) => {
             fabstract: json.fabstract,
             content: json.content,
             fcontent: json.fcontent,
-            src: `${host}` + json.src,
+            src: `${domain}` + json.src,
             date: dateTime.parseStampToFormat(Number(json.modified_time), 'YYYY-MM-DD hh:mm:ss')             
         }
         resolve(json)

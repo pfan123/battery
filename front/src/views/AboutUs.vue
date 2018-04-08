@@ -3,8 +3,8 @@
     <div v-if="banners.length > 1">
       <bat-banner :banners="banners"></bat-banner>
     </div>  
-    <div v-else>
-      <bat-image v:if="banners.length == 1" :image="banners[0]"></bat-image>
+    <div v-else-if="banners.length == 1" >
+      <bat-image :image="banners[0]"></bat-image>
     </div> 
     <bat-introduce :introduce="introduce"></bat-introduce>
     <bat-team></bat-team>

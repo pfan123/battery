@@ -74,7 +74,7 @@
             this.setProductList()
         },
         setProductList(){
-            getCategoryList(this.curCate).then( data => {
+            getCategoryList(this.curCate, "//admin.cygereen.com").then( data => {
                 this.productList[this.curCate] = data
                 this.$store.commit('SET_PRODUCT_LIST', {json: this.productList})
             })

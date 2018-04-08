@@ -82,6 +82,7 @@ var datatime = {
 
 
 var host = "http://127.0.0.1:8180";
+var domain = "//admin.cygereen.com";
 
 /**
  * getSysInfo 获取系统信息
@@ -91,9 +92,9 @@ var getSysInfo = function getSysInfo() {
     __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(host + '/api/dashboard/getSysInfo.json').then(function (res) {
       if (res.status == 200) {
         var json = res.data.data;
-        res.data.data.logo1 = '' + host + res.data.data.logo1;
-        res.data.data.logo2 = '' + host + res.data.data.logo2;
-        res.data.data.favicon = '' + host + res.data.data.favicon;
+        res.data.data.logo1 = '' + domain + res.data.data.logo1;
+        res.data.data.logo2 = '' + domain + res.data.data.logo2;
+        res.data.data.favicon = '' + domain + res.data.data.favicon;
         resolve(json);
       } else {
         reject({});
@@ -115,7 +116,7 @@ var getBannerList = function getBannerList(type) {
         var json = res.data.data;
         json = json.map(function (item) {
           return {
-            src: '' + host + item.src,
+            src: '' + domain + item.src,
             link: item.link,
             tags: item.tags
           };
@@ -149,7 +150,7 @@ var api_getHomeProductsList = function getHomeProductsList() {
             ftitle: item.ftitle,
             abstract: item.abstract,
             fabstract: item.fabstract,
-            src: '' + host + (item.src1 || item.src2 || item.src3 || item.src4 || item.src5),
+            src: '' + domain + (item.src1 || item.src2 || item.src3 || item.src4 || item.src5),
             date: datetime_defaultExport.parseStampToFormat(Number(item.modified_time), 'YYYY-MM-DD hh:mm:ss')
           };
         });
@@ -194,9 +195,10 @@ var getProductsCateList = function getProductsCateList() {
  * getProductsCateList 获取产品分类列表
  * @param 
  */
-var getCategoryList = function getCategoryList(category) {
+var getCategoryList = function getCategoryList(category, sdomain) {
+  var vhost = sdomain || host;
   return new Promise(function (resolve, reject) {
-    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(host + '/api/dashboard/getCateProductsList.json', { category: category }).then(function (res) {
+    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(vhost + '/api/dashboard/getCateProductsList.json', { category: category }).then(function (res) {
       if (res.status == 200) {
         var json = res.data.data;
         json.sort(function (a, b) {
@@ -207,7 +209,7 @@ var getCategoryList = function getCategoryList(category) {
           return d - c;
         });
         json.forEach(function (item) {
-          item.src = '' + host + item.src;
+          item.src = '' + domain + item.src;
         });
         resolve(json);
       } else {
@@ -239,12 +241,12 @@ var getProductsInfo = function getProductsInfo(page) {
           fcontent: json.fcontent,
           link: json.link,
           price: json.price,
-          src: '' + host + (json.src1 || json.src2 || json.src3 || json.src4 || json.src5),
-          src1: json.src1 ? '' + host + json.src1 : null,
-          src2: json.src2 ? '' + host + json.src2 : null,
-          src3: json.src3 ? '' + host + json.src3 : null,
-          src4: json.src4 ? '' + host + json.src4 : null,
-          src5: json.src5 ? '' + host + json.src5 : null
+          src: '' + domain + (json.src1 || json.src2 || json.src3 || json.src4 || json.src5),
+          src1: json.src1 ? '' + domain + json.src1 : null,
+          src2: json.src2 ? '' + domain + json.src2 : null,
+          src3: json.src3 ? '' + domain + json.src3 : null,
+          src4: json.src4 ? '' + domain + json.src4 : null,
+          src5: json.src5 ? '' + domain + json.src5 : null
         };
         resolve(json);
       } else {
@@ -275,7 +277,7 @@ var api_getNewsList = function getNewsList(type) {
             ftitle: item.ftitle,
             abstract: item.abstract,
             fabstract: item.fabstract,
-            src: '' + host + item.src,
+            src: '' + domain + item.src,
             date: datetime_defaultExport.parseStampToFormat(Number(item.modified_time), 'YYYY-MM-DD hh:mm:ss')
           };
         });
@@ -306,7 +308,7 @@ var api_getNewsContent = function getNewsContent(page) {
           fabstract: json.fabstract,
           content: json.content,
           fcontent: json.fcontent,
-          src: '' + host + json.src,
+          src: '' + domain + json.src,
           date: datetime_defaultExport.parseStampToFormat(Number(json.modified_time), 'YYYY-MM-DD hh:mm:ss')
         };
         resolve(json);

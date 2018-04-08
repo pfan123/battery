@@ -1,4 +1,4 @@
-webpackJsonp([4],{
+webpackJsonp([6],{
 
 /***/ 164:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -162,27 +162,30 @@ var Component = normalizeComponent(
 
 /***/ }),
 
-/***/ 178:
+/***/ 186:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 179:
+/***/ 187:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
 
-/***/ 192:
+/***/ 196:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./front/src/components/Map.vue
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./front/src/components/Category.vue
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__api_index_js__ = __webpack_require__(71);
+//
+//
 //
 //
 //
@@ -205,43 +208,80 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ var Map_defaultExport = ({
-    name: 'bat-mission',
+
+/* harmony default export */ var Category_defaultExport = ({
+    name: 'bat-category',
 
     props: {
-        mapInfo: {
-            type: Object,
+        cateList: {
+            type: Array,
             required: true
         }
     },
 
+    data: function data() {
+        return {
+            curCate: ""
+        };
+    },
+
+
     computed: {
         isEnglish: function isEnglish() {
             return this.$store.getters.getIsEnglish;
+        },
+        productList: function productList() {
+            return this.$store.getters.getProductList;
         }
     },
 
-    data: function data() {
-        return {};
+    created: function created() {
+        var _this = this;
+
+        var productList = {};
+        this.cateList.map(function (item) {
+            productList[item.category] = "";
+        });
+        this.curCate = this.cateList[0].category;
+        Object(__WEBPACK_IMPORTED_MODULE_0__api_index_js__["i" /* getCategoryList */])(this.curCate).then(function (data) {
+            productList[_this.curCate] = data;
+            _this.$store.commit('SET_PRODUCT_LIST', { json: productList });
+        });
     },
-
-
-    components: {},
-
-    created: function created() {},
     mounted: function mounted() {},
 
 
-    methods: {}
+    methods: {
+        tabCate: function tabCate(index) {
+            this.cateList.forEach(function (item) {
+                item.active = false;
+            });
+            this.cateList[index].active = true;
+            this.curCate = this.cateList[index].category;
+            this.setProductList();
+        },
+        setProductList: function setProductList() {
+            var _this2 = this;
+
+            Object(__WEBPACK_IMPORTED_MODULE_0__api_index_js__["i" /* getCategoryList */])(this.curCate, "//admin.cygereen.com").then(function (data) {
+                _this2.productList[_this2.curCate] = data;
+                _this2.$store.commit('SET_PRODUCT_LIST', { json: _this2.productList });
+            });
+        },
+        goLink: function goLink(event, link) {
+            if (event) event.preventDefault();
+            location.href = link;
+        }
+    }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-186e5028","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/components/Map.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"map"},[_c('div',{staticClass:"map_wrap"},[_c('div',{staticClass:"map_float"},[_c('div',{staticClass:"map_phone"},[_vm._v(_vm._s(_vm.isEnglish ? 'Service hotline' : '服务热线')+": "),_c('span',[_vm._v("40088-10115")])]),_c('div',{staticClass:"map_sel"},[_c('select',_vm._l((_vm.mapInfo.branch),function(item){return _c('option',{attrs:{"selected":""},domProps:{"value":item.id}},[_vm._v(_vm._s(_vm.isEnglish ? item.ftitle : item.title))])}))]),_c('div',{staticClass:"map_adress",attrs:{"id":"map_adress"}},[_vm._v(_vm._s(_vm.isEnglish ? _vm.mapInfo.ftitle : _vm.mapInfo.address)+"\n                "),_c('br'),_vm._v(_vm._s(_vm.isEnglish ? 'Landline phone' : '联系方式')+": "+_vm._s(_vm.mapInfo.telnum))])]),_vm._m(0)])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"map_content"},[_c('img',{attrs:{"src":"/public/images/map.jpg","alt":""}})])}]
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-ddfcb0aa","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/components/Category.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"category g_cf"},[_c('h3',{staticClass:"category_title"},[_vm._v(_vm._s(_vm.isEnglish ? "Products" : "产品中心"))]),_c('div',{staticClass:"category_left g_cf"},_vm._l((_vm.cateList),function(item,index){return _c('a',{key:item.category,class:{actived: item.active},attrs:{"href":"javascript:;"},on:{"click":function($event){_vm.tabCate(index)}}},[_vm._v(_vm._s(_vm.isEnglish ? item.fcategory : item.category))])})),_c('div',{staticClass:"category_right g_cf"},_vm._l((_vm.productList[_vm.curCate]),function(item,index){return (_vm.productList[_vm.curCate])?_c('a',{key:index,staticClass:"product_item",attrs:{"href":'/detail/'+item.id}},[_c('div',{staticClass:"product_pic"},[_c('img',{attrs:{"src":item.src,"alt":""}})]),_c('div',{staticClass:"product_info"},[_c('h4',{staticClass:"product_item_title line2"},[_vm._v("\n                    "+_vm._s(_vm.isEnglish ? item.ftitle : item.title)+"\n                ")]),_c('p',{staticClass:"product_price"},[_vm._v("$ "+_vm._s(item.price)+" / piece")]),_c('span',{staticClass:"product_pay",on:{"click":function($event){_vm.goLink($event, item.link)}}},[_vm._v("直接购买")])])]):_vm._e()}))])}
+var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
-/* harmony default export */ var components_Map_defaultExport = (esExports);
-// CONCATENATED MODULE: ./front/src/components/Map.vue
+/* harmony default export */ var components_Category_defaultExport = (esExports);
+// CONCATENATED MODULE: ./front/src/components/Category.vue
 function injectStyle (ssrContext) {
-  __webpack_require__(179)
+  __webpack_require__(187)
 }
 var normalizeComponent = __webpack_require__(14)
 /* script */
@@ -258,17 +298,17 @@ var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
-  Map_defaultExport,
-  components_Map_defaultExport,
+  Category_defaultExport,
+  components_Category_defaultExport,
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
   __vue_module_identifier__
 )
 
-/* harmony default export */ var src_components_Map_defaultExport = (Component.exports);
+/* harmony default export */ var src_components_Category_defaultExport = (Component.exports);
 
-// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./front/src/views/ContactUs.vue
+// CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./front/src/views/Products.vue
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_common_Banner_vue__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_common_Image_vue__ = __webpack_require__(166);
 //
@@ -288,8 +328,8 @@ var Component = normalizeComponent(
 
 
 
-/* harmony default export */ var ContactUs_defaultExport = ({
-  name: 'contact',
+/* harmony default export */ var Products_defaultExport = ({
+  name: 'product',
   asyncData: function asyncData(_ref) {
     var store = _ref.store,
         type = _ref.type;
@@ -297,27 +337,22 @@ var Component = normalizeComponent(
     return store.dispatch('FETCH_PAGE_DATA', { type: type });
   },
   data: function data() {
-    return {
-      mapInfo: {
-        tel: '40088-10115',
-        branch: [{ title: '深圳总部', ftitle: 'Shenzhen headquarters', id: 0 }],
-        address: '广东省深圳市龙华区三联路跟清泉路交汇处',
-        faddress: 'guangdong province ',
-        telnum: '40088-10115'
-      }
-    };
+    return {};
   },
 
 
   components: {
     'bat-banner': __WEBPACK_IMPORTED_MODULE_0__components_common_Banner_vue__["a" /* default */],
     'bat-image': __WEBPACK_IMPORTED_MODULE_1__components_common_Image_vue__["a" /* default */],
-    'bat-map': src_components_Map_defaultExport
+    'bat-category': src_components_Category_defaultExport
   },
 
   computed: {
     banners: function banners() {
       return this.$store.getters.bannerList;
+    },
+    cateList: function cateList() {
+      return this.$store.getters.getCateList;
     }
   },
 
@@ -327,39 +362,39 @@ var Component = normalizeComponent(
 
   methods: {}
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-1e22b304","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/views/ContactUs.vue
-var ContactUs_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"contact_wrapper"},[(_vm.banners.length > 1)?_c('div',[_c('bat-banner',{attrs:{"banners":_vm.banners}})],1):_c('div',[_c('bat-image',{attrs:{"v:if":"banners.length == 1","image":_vm.banners[0]}})],1),_c('bat-map',{attrs:{"mapInfo":_vm.mapInfo}})],1)}
-var ContactUs_staticRenderFns = []
-var ContactUs_esExports = { render: ContactUs_render, staticRenderFns: ContactUs_staticRenderFns }
-/* harmony default export */ var views_ContactUs_defaultExport = (ContactUs_esExports);
-// CONCATENATED MODULE: ./front/src/views/ContactUs.vue
-function ContactUs_injectStyle (ssrContext) {
-  __webpack_require__(178)
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-278a638f","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/views/Products.vue
+var Products_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"news_wrapper"},[(_vm.banners.length > 1)?_c('div',[_c('bat-banner',{attrs:{"banners":_vm.banners}})],1):(_vm.banners.length == 1)?_c('div',[_c('bat-image',{attrs:{"image":_vm.banners[0]}})],1):_vm._e(),_c('bat-category',{attrs:{"cateList":_vm.cateList}})],1)}
+var Products_staticRenderFns = []
+var Products_esExports = { render: Products_render, staticRenderFns: Products_staticRenderFns }
+/* harmony default export */ var views_Products_defaultExport = (Products_esExports);
+// CONCATENATED MODULE: ./front/src/views/Products.vue
+function Products_injectStyle (ssrContext) {
+  __webpack_require__(186)
 }
-var ContactUs_normalizeComponent = __webpack_require__(14)
+var Products_normalizeComponent = __webpack_require__(14)
 /* script */
 
 
 /* template */
 
 /* template functional */
-var ContactUs___vue_template_functional__ = false
+var Products___vue_template_functional__ = false
 /* styles */
-var ContactUs___vue_styles__ = ContactUs_injectStyle
+var Products___vue_styles__ = Products_injectStyle
 /* scopeId */
-var ContactUs___vue_scopeId__ = null
+var Products___vue_scopeId__ = null
 /* moduleIdentifier (server only) */
-var ContactUs___vue_module_identifier__ = null
-var ContactUs_Component = ContactUs_normalizeComponent(
-  ContactUs_defaultExport,
-  views_ContactUs_defaultExport,
-  ContactUs___vue_template_functional__,
-  ContactUs___vue_styles__,
-  ContactUs___vue_scopeId__,
-  ContactUs___vue_module_identifier__
+var Products___vue_module_identifier__ = null
+var Products_Component = Products_normalizeComponent(
+  Products_defaultExport,
+  views_Products_defaultExport,
+  Products___vue_template_functional__,
+  Products___vue_styles__,
+  Products___vue_scopeId__,
+  Products___vue_module_identifier__
 )
 
-/* harmony default export */ __webpack_exports__["default"] = (ContactUs_Component.exports);
+/* harmony default export */ __webpack_exports__["default"] = (Products_Component.exports);
 
 
 /***/ })

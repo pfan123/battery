@@ -534,8 +534,8 @@ var Mission_Component = Mission_normalizeComponent(
 
   methods: {}
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-675e20b4","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/views/AboutUs.vue
-var AboutUs_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"about_wrapper"},[(_vm.banners.length > 1)?_c('div',[_c('bat-banner',{attrs:{"banners":_vm.banners}})],1):_c('div',[_c('bat-image',{attrs:{"v:if":"banners.length == 1","image":_vm.banners[0]}})],1),_c('bat-introduce',{attrs:{"introduce":_vm.introduce}}),_c('bat-team'),_c('bat-mission',{attrs:{"mission":_vm.mission}})],1)}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-cf53ce96","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/views/AboutUs.vue
+var AboutUs_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"about_wrapper"},[(_vm.banners.length > 1)?_c('div',[_c('bat-banner',{attrs:{"banners":_vm.banners}})],1):(_vm.banners.length == 1)?_c('div',[_c('bat-image',{attrs:{"image":_vm.banners[0]}})],1):_vm._e(),_c('bat-introduce',{attrs:{"introduce":_vm.introduce}}),_c('bat-team'),_c('bat-mission',{attrs:{"mission":_vm.mission}})],1)}
 var AboutUs_staticRenderFns = []
 var AboutUs_esExports = { render: AboutUs_render, staticRenderFns: AboutUs_staticRenderFns }
 /* harmony default export */ var views_AboutUs_defaultExport = (AboutUs_esExports);

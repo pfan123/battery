@@ -32,7 +32,7 @@
         :show-file-list="false"
         :on-success="handleSuccess1">
         <el-button size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">上传大小标准 <b style="color: red">220x220</b>，只能上传jpg/png文件，且不超过500kb</div>
+        <div slot="tip" class="el-upload__tip">上传大小标准 <b style="color: red">470x470</b>，只能上传jpg/png文件，且不超过500kb</div>
       </el-upload>   
     </div>      
     <div class="upload-mod">
@@ -46,7 +46,7 @@
         :show-file-list="false"
         :on-success="handleSuccess2">
         <el-button size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">上传大小标准 <b style="color: red">220x220</b>，只能上传jpg/png文件，且不超过500kb</div>
+        <div slot="tip" class="el-upload__tip">上传大小标准 <b style="color: red">470x470</b>，只能上传jpg/png文件，且不超过500kb</div>
       </el-upload>   
     </div>    
     <div class="upload-mod">
@@ -60,7 +60,7 @@
         :show-file-list="false"
         :on-success="handleSuccess3">
         <el-button size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">上传大小标准 <b style="color: red">220x220</b>，只能上传jpg/png文件，且不超过500kb</div>
+        <div slot="tip" class="el-upload__tip">上传大小标准 <b style="color: red">470x470</b>，只能上传jpg/png文件，且不超过500kb</div>
       </el-upload>   
     </div>      
     <div class="upload-mod">
@@ -74,7 +74,7 @@
         :show-file-list="false"
         :on-success="handleSuccess4">
         <el-button size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">上传大小标准 <b style="color: red">220x220</b>，只能上传jpg/png文件，且不超过500kb</div>
+        <div slot="tip" class="el-upload__tip">上传大小标准 <b style="color: red">470x470</b>，只能上传jpg/png文件，且不超过500kb</div>
       </el-upload>   
     </div>     
     <div class="upload-mod">
@@ -88,7 +88,7 @@
         :show-file-list="false"
         :on-success="handleSuccess5">
         <el-button size="small" type="primary">点击上传</el-button>
-        <div slot="tip" class="el-upload__tip">上传大小标准 <b style="color: red">220x220</b>，只能上传jpg/png文件，且不超过500kb</div>
+        <div slot="tip" class="el-upload__tip">上传大小标准 <b style="color: red">470x470</b>，只能上传jpg/png文件，且不超过500kb</div>
       </el-upload>   
     </div>                        
     <div class="sys_input_block">
