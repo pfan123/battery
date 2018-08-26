@@ -6,7 +6,7 @@
                 <div class="profile_txt" v-html="isEnglish ? profileInfo.fdesc : profileInfo.desc"></div>
             </div>
             <div class="profile_img">
-                <img src="https://yun.pfan123.com/images/temp/profile.png" alt="公司简介">
+                <img src="/public/images/profile.png" alt="公司简介">
             </div>
         </div>
     </div>

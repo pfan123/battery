@@ -429,9 +429,9 @@ var Component = normalizeComponent(
 
     methods: {}
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-0790c3d7","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/components/common/Profile.vue
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-4c3db9a1","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/components/common/Profile.vue
 var Profile_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"profile_wrapper"},[_c('div',{staticClass:"profile_inner"},[_c('div',{staticClass:"profile_info"},[_c('h4',[_vm._v(_vm._s(_vm.isEnglish ? _vm.profileInfo.ftitle : _vm.profileInfo.title))]),_c('div',{staticClass:"profile_txt",domProps:{"innerHTML":_vm._s(_vm.isEnglish ? _vm.profileInfo.fdesc : _vm.profileInfo.desc)}})]),_vm._m(0)])])}
-var Profile_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"profile_img"},[_c('img',{attrs:{"src":"https://yun.pfan123.com/images/temp/profile.png","alt":"公司简介"}})])}]
+var Profile_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"profile_img"},[_c('img',{attrs:{"src":"/public/images/profile.png","alt":"公司简介"}})])}]
 var Profile_esExports = { render: Profile_render, staticRenderFns: Profile_staticRenderFns }
 /* harmony default export */ var common_Profile_defaultExport = (Profile_esExports);
 // CONCATENATED MODULE: ./front/src/components/common/Profile.vue
@@ -585,25 +585,25 @@ var News_Component = News_normalizeComponent(
   data: function data() {
     return {
       feats: [{
-        src: "https://yun.pfan123.com/images/icon/kwIcon-1.png",
+        src: "/public/images/kwIcon-1.png",
         title: "国资控股",
         ftitle: "State-owned asset holding",
         desc: "由哈尔滨工业投资集团控股国有混合制企业",
         fdesc: ""
       }, {
-        src: "https://yun.pfan123.com/images/icon/kwIcon-2.png",
+        src: "/public/images/kwIcon-2.png",
         title: "自主研发",
         ftitle: "Independent research and development",
         desc: "采用自主研发的小微信贷核心技术体系",
         fdesc: ""
       }, {
-        src: "https://yun.pfan123.com/images/icon/kwIcon-3.png",
+        src: "/public/images/kwIcon-3.png",
         title: "普惠金融",
         ftitle: "Pratt &whitney financial",
         desc: "服务实体经济符合国家政策方针",
         fdesc: ""
       }, {
-        src: "https://yun.pfan123.com/images/icon/kwIcon-4.png",
+        src: "/public/images/kwIcon-4.png",
         title: "专业定制",
         ftitle: "Professional custom",
         desc: "提供快捷简便的提供快捷简便的专业化个人融资服务",
@@ -644,7 +644,7 @@ var News_Component = News_normalizeComponent(
 
   methods: {}
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-5e9cbbd3","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/views/Index.vue
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-0188b279","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/views/Index.vue
 var Index_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"index_wrapper"},[(_vm.banners.length > 1)?_c('div',[_c('bat-banner',{attrs:{"banners":_vm.banners}})],1):(_vm.banners.length == 1)?_c('div',[_c('bat-image',{attrs:{"image":_vm.banners[0]}})],1):_vm._e(),_c('bat-feature',{attrs:{"feats":_vm.feats}}),_c('bat-product',{attrs:{"homeProList":_vm.homeProList}}),_c('bat-profile',{attrs:{"profileInfo":_vm.profileInfo}}),_c('bat-news',{attrs:{"list":_vm.newLists}})],1)}
 var Index_staticRenderFns = []
 var Index_esExports = { render: Index_render, staticRenderFns: Index_staticRenderFns }

@@ -30,28 +30,28 @@
           return {
             feats: [
                 {
-                    src: "https://yun.pfan123.com/images/icon/kwIcon-1.png",
+                    src: "/public/images/kwIcon-1.png",
                     title: "国资控股",
                     ftitle: "State-owned asset holding",
                     desc: "由哈尔滨工业投资集团控股国有混合制企业",
                     fdesc: ""
                 },
                 {
-                    src: "https://yun.pfan123.com/images/icon/kwIcon-2.png",
+                    src: "/public/images/kwIcon-2.png",
                     title: "自主研发",
                     ftitle: "Independent research and development",
                     desc: "采用自主研发的小微信贷核心技术体系",
                     fdesc: ""                
                 },
                 {
-                    src: "https://yun.pfan123.com/images/icon/kwIcon-3.png",
+                    src: "/public/images/kwIcon-3.png",
                     title: "普惠金融",
                     ftitle: "Pratt &whitney financial",
                     desc: "服务实体经济符合国家政策方针",
                     fdesc: ""                
                 },
                 {
-                    src: "https://yun.pfan123.com/images/icon/kwIcon-4.png",
+                    src: "/public/images/kwIcon-4.png",
                     title: "专业定制",
                     ftitle: "Professional custom",
                     desc: "提供快捷简便的提供快捷简便的专业化个人融资服务",

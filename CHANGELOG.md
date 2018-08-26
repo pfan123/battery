@@ -1,9 +1,10 @@
 <a name=""></a>
-#  (2018-04-01)
+#  (2018-04-08)
 
 
 ### Bug Fixes
 
+* **battery:** 修复bannerbug ([756787e](https://github.com/pfan123/o2Blog/commit/756787e))
 * **battery:** 去掉缓存 ([4566140](https://github.com/pfan123/o2Blog/commit/4566140))
 * **battery:** 调整 ([b6e7f95](https://github.com/pfan123/o2Blog/commit/b6e7f95))
 * **o2Blog:** install transform-runtime polyfill ([8fec04f](https://github.com/pfan123/o2Blog/commit/8fec04f))
