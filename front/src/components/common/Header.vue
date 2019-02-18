@@ -25,7 +25,7 @@ export default {
           { title: '主页', ftitle: 'HOME', name: 'home', link: '/index'},
           { title: '产品中心', ftitle: 'Products', name: 'product', link: '/products'},
           { title: '新闻中心', ftitle: 'News Center', name: 'news', link: '/news'},
-          { title: '关于我们', ftitle: 'About Us', name: 'about', link: '/aboutus'},
+          // { title: '关于我们', ftitle: 'About Us', name: 'about', link: '/aboutus'},
           { title: '联系我们', ftitle: 'Contact Us', name: 'contact', link: '/contactus'},
           { title: '疑难解答', ftitle: 'FAQ', name: 'faq', link: '/faq'},
         ]

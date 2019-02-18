@@ -443,7 +443,7 @@ var Component = normalizeComponent(
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-5f25462a","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/components/Question.vue
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-924ad5de","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/components/Question.vue
 var Question_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"question_wrapper"},[_c('div',{staticClass:"question_info"},[_c('h4',{staticClass:"question_title"},[_vm._v(_vm._s(_vm.isEnglish ? 'Question' : '常见问题'))]),_c('el-collapse',{on:{"change":_vm.handleChange},model:{value:(_vm.activeNames),callback:function ($$v) {_vm.activeNames=$$v},expression:"activeNames"}},_vm._l((_vm.faqList),function(item,index){return _c('div',[_c('el-collapse-item',{attrs:{"title":_vm.isEnglish ? item.ftitle : item.title,"name":index+1}},[_c('div',{staticClass:"question_desc",domProps:{"innerHTML":_vm._s(_vm.isEnglish ? item.fdesc : item.desc)}})])],1)}))],1)])}
 var Question_staticRenderFns = []
 var Question_esExports = { render: Question_render, staticRenderFns: Question_staticRenderFns }

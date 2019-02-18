@@ -1,8 +1,10 @@
 .sass-cache
 npm-debug.log
 .DS_Store
-firekylin.sql
 /node_modules/
 yarn.lock
 package-lock.json
 /logs/**
+battery.sql
+battery-construct.sql
+publish.sh

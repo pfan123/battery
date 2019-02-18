@@ -36,9 +36,6 @@ var datatime = {
       _date = new Date();
     }
 
-    var parsedDate = void 0;
-    var parseTime = void 0;
-    var parseDatetime = void 0;
     var yearNum = _date.getFullYear();
     var monthNum = monthEnum[_date.getMonth()];
     var dayNum = dayEnum[_date.getDate() - 1];
@@ -47,7 +44,7 @@ var datatime = {
     var secNum = timeEnum[_date.getSeconds()];
 
     type = type || 'YYYY/MM/DD/hh/mm/ss';
-    parseDatetime = type.replace('YYYY', yearNum).replace('MM', monthNum).replace('DD', dayNum).replace('hh', hourNum).replace('mm', minNum).replace('ss', secNum);
+    var parseDatetime = type.replace('YYYY', yearNum).replace('MM', monthNum).replace('DD', dayNum).replace('hh', hourNum).replace('mm', minNum).replace('ss', secNum);
 
     return parseDatetime;
   },
@@ -550,7 +547,9 @@ var debounce = function debounce(fn, delay) {
     return {
       hide: false,
       route: 'index',
-      menu: [{ title: '主页', ftitle: 'HOME', name: 'home', link: '/index' }, { title: '产品中心', ftitle: 'Products', name: 'product', link: '/products' }, { title: '新闻中心', ftitle: 'News Center', name: 'news', link: '/news' }, { title: '关于我们', ftitle: 'About Us', name: 'about', link: '/aboutus' }, { title: '联系我们', ftitle: 'Contact Us', name: 'contact', link: '/contactus' }, { title: '疑难解答', ftitle: 'FAQ', name: 'faq', link: '/faq' }]
+      menu: [{ title: '主页', ftitle: 'HOME', name: 'home', link: '/index' }, { title: '产品中心', ftitle: 'Products', name: 'product', link: '/products' }, { title: '新闻中心', ftitle: 'News Center', name: 'news', link: '/news' },
+      // { title: '关于我们', ftitle: 'About Us', name: 'about', link: '/aboutus'},
+      { title: '联系我们', ftitle: 'Contact Us', name: 'contact', link: '/contactus' }, { title: '疑难解答', ftitle: 'FAQ', name: 'faq', link: '/faq' }]
     };
   },
 
@@ -590,7 +589,7 @@ var debounce = function debounce(fn, delay) {
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-23f35337","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/components/common/Header.vue
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-6d313b57","hasScoped":false,"preserveWhitespace":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./front/src/components/common/Header.vue
 var Header_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(!_vm.hide),expression:"!hide"}],staticClass:"header"},[_c('div',{staticClass:"header_inner"},[_c('h2',{staticClass:"header_logo"},[_c('a',{attrs:{"href":"/"}},[_c('img',{attrs:{"src":_vm.logo,"alt":""}}),_c('span',[_vm._v("深圳绿行科技有限公司")])])])]),_c('ul',{staticClass:"header_nav g_cf"},[_vm._l((_vm.menu),function(item){return _c('li',{class:[_vm.route == item.name ? 'cur': '']},[_c('a',{staticClass:"header_nav_a",attrs:{"href":item.link}},[_vm._v(_vm._s(_vm.isEnglish ? item.ftitle : item.title))])])}),_c('li',{staticClass:"tap_lang",on:{"click":_vm.tapLang}},[_c('i',{class:[_vm.isEnglish ? 'icon eng':'icon']}),_vm._v(_vm._s(_vm.isEnglish ? 'English' : '中文'))])],2)])}
 var staticRenderFns = []
 var esExports = { render: Header_render, staticRenderFns: staticRenderFns }
@@ -772,7 +771,6 @@ var App_Component = App_normalizeComponent(
 /* harmony default export */ var actions_defaultExport = ({
   FETCH_SYS_INFO: function FETCH_SYS_INFO(_ref) {
     var commit = _ref.commit;
-
     return Object(__WEBPACK_IMPORTED_MODULE_0__api__["j" /* getSysInfo */])().then(function (json) {
       commit('SET_SYS_INFO', { json: json });
     }).catch(function (err) {
@@ -788,7 +786,7 @@ var App_Component = App_normalizeComponent(
         page = _ref3.page;
 
     commit('SET_ACTIVE_TYPE', { type: type });
-    if (type == "home") {
+    if (type == 'home') {
       return Object(__WEBPACK_IMPORTED_MODULE_0__api__["d" /* fetchHomePage */])().then(function (result) {
         commit('SET_SYS_INFO', { json: result[0] });
         commit('SET_BANNER_LIST', { json: result[1] });
@@ -797,7 +795,7 @@ var App_Component = App_normalizeComponent(
       }).catch(function (err) {
         return err;
       });
-    } else if (type == "product") {
+    } else if (type == 'product') {
       return Object(__WEBPACK_IMPORTED_MODULE_0__api__["h" /* fetchProductsPage */])().then(function (result) {
         commit('SET_SYS_INFO', { json: result[0] });
         commit('SET_BANNER_LIST', { json: result[1] });
@@ -805,7 +803,7 @@ var App_Component = App_normalizeComponent(
       }).catch(function (err) {
         return err;
       });
-    } else if (type == "detail") {
+    } else if (type == 'detail') {
       return Object(__WEBPACK_IMPORTED_MODULE_0__api__["g" /* fetchProductsDetailPage */])(page).then(function (result) {
         commit('SET_SYS_INFO', { json: result[0] });
         commit('SET_BANNER_LIST', { json: result[1] });
@@ -813,7 +811,7 @@ var App_Component = App_normalizeComponent(
       }).catch(function (err) {
         return err;
       });
-    } else if (type == "news") {
+    } else if (type == 'news') {
       return Object(__WEBPACK_IMPORTED_MODULE_0__api__["f" /* fetchNewsPage */])().then(function (result) {
         commit('SET_SYS_INFO', { json: result[0] });
         commit('SET_BANNER_LIST', { json: result[1] });
@@ -821,7 +819,7 @@ var App_Component = App_normalizeComponent(
       }).catch(function (err) {
         return err;
       });
-    } else if (type == "newsarticles") {
+    } else if (type == 'newsarticles') {
       return Object(__WEBPACK_IMPORTED_MODULE_0__api__["e" /* fetchNewsArticlesPage */])(page).then(function (result) {
         commit('SET_SYS_INFO', { json: result[0] });
         commit('SET_BANNER_LIST', { json: result[1] });
@@ -829,7 +827,7 @@ var App_Component = App_normalizeComponent(
       }).catch(function (err) {
         return err;
       });
-    } else if (type == "about") {
+    } else if (type == 'about') {
       return Object(__WEBPACK_IMPORTED_MODULE_0__api__["a" /* fetchAboutPage */])().then(function (result) {
         commit('SET_SYS_INFO', { json: result[0] });
         commit('SET_BANNER_LIST', { json: result[1] });
@@ -837,7 +835,7 @@ var App_Component = App_normalizeComponent(
       }).catch(function (err) {
         return err;
       });
-    } else if (type == "contact") {
+    } else if (type == 'contact') {
       return Object(__WEBPACK_IMPORTED_MODULE_0__api__["b" /* fetchContactPage */])().then(function (result) {
         commit('SET_SYS_INFO', { json: result[0] });
         commit('SET_BANNER_LIST', { json: result[1] });
@@ -845,7 +843,7 @@ var App_Component = App_normalizeComponent(
       }).catch(function (err) {
         return err;
       });
-    } else if (type == "faq") {
+    } else if (type == 'faq') {
       return Object(__WEBPACK_IMPORTED_MODULE_0__api__["c" /* fetchFaqPage */])().then(function (result) {
         commit('SET_SYS_INFO', { json: result[0] });
         commit('SET_BANNER_LIST', { json: result[1] });
@@ -858,10 +856,6 @@ var App_Component = App_normalizeComponent(
 
 });
 // CONCATENATED MODULE: ./front/src/store/mutations.js
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-
-
 /* harmony default export */ var mutations_defaultExport = ({
   SET_SYS_INFO: function SET_SYS_INFO(state, _ref) {
     var json = _ref.json;
@@ -961,8 +955,8 @@ var App_Component = App_normalizeComponent(
   }
 });
 // CONCATENATED MODULE: ./front/src/store/index.js
-/* harmony import */ var store___WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
-/* harmony import */ var store___WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(store___WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(80);
 
 
@@ -970,22 +964,22 @@ var App_Component = App_normalizeComponent(
 
 
 
-store___WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
 
 function createStore() {
   return new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
     state: {
-      isEnglish: true, //是否英文
-      sysInfo: {}, //系统信息
-      activeType: null, //活动页面
-      bannerList: [], //banner列表
-      homeProList: [], //首页产品列表
-      newsList: [], //news列表
-      cateList: [], //分类列表
-      productList: {}, //分类产品列表
-      proContent: {}, //产品内容
-      newsArticles: {}, //news文章
-      faqList: [], //faq列表
+      isEnglish: true, // 是否英文
+      sysInfo: {}, // 系统信息
+      activeType: null, // 活动页面
+      bannerList: [], // banner列表
+      homeProList: [], // 首页产品列表
+      newsList: [], // news列表
+      cateList: [], // 分类列表
+      productList: {}, // 分类产品列表
+      proContent: {}, // 产品内容
+      newsArticles: {}, // news文章
+      faqList: [], // faq列表
       itemsPerPage: 20,
       items: {/* [id: number]: Item */},
       users: {/* [id: string]: User */},
@@ -1091,9 +1085,8 @@ function timeAgo(time) {
     return pluralize(~~(between / 60), ' minute');
   } else if (between < 86400) {
     return pluralize(~~(between / 3600), ' hour');
-  } else {
-    return pluralize(~~(between / 86400), ' day');
   }
+  return pluralize(~~(between / 86400), ' day');
 }
 
 function pluralize(time, label) {

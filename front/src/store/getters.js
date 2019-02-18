@@ -9,33 +9,33 @@ export default {
 
   newsList (state) {
     return state.newsList
-  },  
+  },
 
-  getHomeProList ( state ){
+  getHomeProList (state) {
     return state.homeProList
   },
 
-  getCateList ( state ){
+  getCateList (state) {
     return state.cateList
-  },  
+  },
 
-  getProductList ( state ){
+  getProductList (state) {
     return state.productList
-  },    
+  },
 
-  getProductContent ( state ){
+  getProductContent (state) {
     return state.proContent
-  },      
+  },
 
-  getNewsArticle ( state ){
+  getNewsArticle (state) {
     return state.newsArticles
   },
 
   faqList (state) {
     return state.faqList
-  },  
+  },
 
   getIsEnglish (state) {
     return state.isEnglish
-  },    
+  },
 }

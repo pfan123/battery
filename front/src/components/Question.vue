@@ -78,10 +78,15 @@ export default {
       text-align center
       line-height 1.1
       margin-bottom 16px
+      
     .el-collapse-item__header
       height 50px
       line-height 50px
       font-size 16px
+
+      .el-collapse-item__arrow
+        margin: 0 8px 0
+
     .question_desc
       font-size 14px
       color #666

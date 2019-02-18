@@ -1,0 +1,21 @@
+{
+  "plugins": [
+    "vue"
+  ],
+  "extends": ["o2team", "vue"],
+  "parser": "babel-eslint",
+  "rules": {
+    "class-methods-use-this": "off",
+    "prefer-rest-params": "off",
+    "arrow-body-style": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["build/*.js", "node_modules/*.js"],
+      "rules": {
+        "import/no-commonjs": "off"
+      }
+    }
+  ],
+  "eslintIgnore": ["hello.js", "world.js"]
+}

@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const LRU = require('lru-cache')  //内存键值对存储管理
+const LRU = require('lru-cache')  // 内存键值对存储管理
 const favicon = require('koa-favicon')
 const resolve = file => path.resolve(__dirname, file)
 const { createBundleRenderer } = require('vue-server-renderer')
@@ -15,8 +15,8 @@ const serverInfo =
 const Koa = require('koa')
 const app = new Koa()
 const router = require('koa-router')()
-const bodyParser = require('koa-bodyparser')  
-const logger = require('koa-logger')  
+const bodyParser = require('koa-bodyparser')
+const logger = require('koa-logger')
 
 const template = fs.readFileSync(resolve('./src/template/index.template.html'), 'utf-8')
 
@@ -59,7 +59,7 @@ if (isProd) {
 }
 
 const staticCache = require('koa-static-cache')
-//https://github.com/koajs/static-cache  参数设置，配置 prefix 提供的文件创建虚拟路径前缀  类似app.use('/static', express.static('public')) http://expressjs.com/zh-cn/starter/static-files.html
+// https://github.com/koajs/static-cache  参数设置，配置 prefix 提供的文件创建虚拟路径前缀  类似app.use('/static', express.static('public')) http://expressjs.com/zh-cn/starter/static-files.html
 const serve = (pf, path, cache) => staticCache(resolve(path), {
   maxAge: cache && isProd ? 365 * 24 * 60 * 60 : 0,
   gzip: true,
@@ -73,7 +73,7 @@ app
 .use(serve('/manifest.json', './manifest.json', true))
 .use(serve('/dist/service-worker.js', './dist/service-worker.js'))
 
-// 配置HTTP请求体解析中间件，支持content-type：json, form and text 
+// 配置HTTP请求体解析中间件，支持content-type：json, form and text
 app.use(bodyParser())
 // 配置控制台个性日志中间件
 app.use(logger())
@@ -92,17 +92,16 @@ const microCache = LRU({
 const isCacheable = req => useMicroCache
 
 function render (ctx, next, resolve) {
-  let req = ctx.request
-  let res = ctx.response
+  const req = ctx.request
   const s = Date.now()
 
-  ctx.set("Content-Type", "text/html")
-  ctx.set("Server", serverInfo)
+  ctx.set('Content-Type', 'text/html')
+  ctx.set('Server', serverInfo)
 
   const handleError = err => {
     if (err.url) {
       ctx.redirect(err.url)
-    } else if(err.code === 404) {
+    } else if (err.code === 404) {
       ctx.status = 404
       ctx.body = '404 | Page Not Found'
     } else {
@@ -116,7 +115,7 @@ function render (ctx, next, resolve) {
   }
 
   const cacheable = isCacheable(req)
-  //缓存 html 结构处理
+  // 缓存 html 结构处理
   if (cacheable) {
     const hit = microCache.get(req.url)
     if (hit) {
@@ -148,27 +147,25 @@ function render (ctx, next, resolve) {
     console.log(`整个服务端渲染的耗时 whole request: ${Date.now() - s}ms`)
     resolve()
   })
-
 }
 
 // router.get('/_.gif', (ctx, next) => sendGoogleAnalytic(ctx, next))
 
-//router使用异步，需要 return new Promise()
+// router使用异步，需要 return new Promise()
 router.get('*', (ctx, next) => {
-  if(isProd){
-    return new Promise( (resolve, reject) => {
+  if (isProd) {
+    return new Promise((resolve, reject) => {
       render(ctx, next, resolve)
     })
-  }else{
-    return new Promise( (resolve, reject) => {
-      readyPromise.then(() => render(ctx, next, resolve))
-    })
   }
+  return new Promise((resolve, reject) => {
+    readyPromise.then(() => render(ctx, next, resolve))
+  })
 })
 
 app
 .use(router.routes())
-.use(router.allowedMethods());
+.use(router.allowedMethods())
 
 const port = process.env.PORT || 8080
 app.listen(port, () => {
@@ -178,20 +175,20 @@ app.listen(port, () => {
 /**
  * 异常日志打印
  */
-process.on("uncaughtException",function(err){
-  console.log(process.pid);
-  console.log("Caught exception:"+err);
-  console.log(curTime() + "server error!");
-});
+process.on('uncaughtException', function (err) {
+  console.log(process.pid)
+  console.log(`Caught exception:${err}`)
+  console.log(`${curTime()}server error!`)
+})
 
 
-/**生成当前时间**/
-function curTime() {
-  var date = new Date();
-  var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-  var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-  var hh = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
-  var mm = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
-  return "["+date.getFullYear() + "-" + month + "-" + currentDate+" "+hh + ":" + mm+"]";
-  //返回格式：yyyy-MM-dd hh:mm
+/** 生成当前时间**/
+function curTime () {
+  const date = new Date()
+  const month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
+  const currentDate = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate()
+  const hh = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours()
+  const mm = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
+  return `[${date.getFullYear()}-${month}-${currentDate} ${hh}:${mm}]`
+  // 返回格式：yyyy-MM-dd hh:mm
 }
