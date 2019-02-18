@@ -1,6 +1,6 @@
-# vue-hackernews-2.0
+# battery
 
-HackerNews clone built with Vue 2.0 + vue-router + vuex, with server-side rendering.
+battery clone built with Vue 2.0 + vue-router + vuex, with server-side rendering.
 
 <p align="center">
   <a href="https://vue-hn.now.sh" target="_blank">

@@ -1,5 +1,5 @@
 <a name=""></a>
-#  (2018-09-10)
+#  (2019-02-18)
 
 
 ### Bug Fixes
@@ -13,6 +13,7 @@
 
 ### Features
 
+* **battery:** add battery config file ([95ae520](https://github.com/pfan123/o2Blog/commit/95ae520))
 * **battery:** add pm2.json ([e0a9b71](https://github.com/pfan123/o2Blog/commit/e0a9b71))
 * **battery:** developed admin front ([3c7e029](https://github.com/pfan123/o2Blog/commit/3c7e029))
 * **battery:** 完成 ([32118c7](https://github.com/pfan123/o2Blog/commit/32118c7))
