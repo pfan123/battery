@@ -221,7 +221,7 @@ app
 
 const port = config.port || 8180;
 app.listen(port, () => {
-  opn(`http://localhost:${port}`);
+  // opn(`http://localhost:${port}`);
   console.log(`server started at localhost:${port}`);
 });
 
