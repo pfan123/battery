@@ -17,7 +17,6 @@ export default {
     this.$http.get('/api/user/getUserInfo.json').then( ({ data }) => {
       if(data.data){
         this.userName = data.data.userName
-        this.$router.push({ path: '/dashboard' })
       }
     }).catch((err) => {
         this.$router.push({ name: 'Login' })

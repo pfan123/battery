@@ -1,7 +1,8 @@
 import axios from 'axios'
 import dateTime from '../util/datetime'
 const host = "http://127.0.0.1:8180"
-const domain = "//admin.cygereen.com"
+// const domain = "//admin.cygereen.com"
+const domain = "//admin.pfan123.com"  //临时方案
 
 /**
  * getSysInfo 获取系统信息

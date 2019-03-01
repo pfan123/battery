@@ -21,7 +21,7 @@ export default {
     }
   },
   created(){
-
+    this.curRoute = this.$route.name
   },    
   methods: {
     toLink(link, curRoute){

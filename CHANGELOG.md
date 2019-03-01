@@ -13,6 +13,7 @@
 
 ### Features
 
+* **battery:** add admim/dist/ files ([b246148](https://github.com/pfan123/o2Blog/commit/b246148))
 * **battery:** add battery config file ([95ae520](https://github.com/pfan123/o2Blog/commit/95ae520))
 * **battery:** add pm2.json ([e0a9b71](https://github.com/pfan123/o2Blog/commit/e0a9b71))
 * **battery:** developed admin front ([3c7e029](https://github.com/pfan123/o2Blog/commit/3c7e029))

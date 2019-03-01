@@ -18,7 +18,7 @@ import FaqEditor from '@/view/FaqEditor'
 Vue.use(Router);
 
 export default new Router({
-  // mode: 'history',
+  mode: 'history',
   scrollBehavior: () => ({ y: 0 }),  
   routes: [
     { path: '/admin/login', component: Login, name: 'Login' },

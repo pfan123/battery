@@ -5,7 +5,7 @@ const path = require('path');
 const LRU = require('lru-cache');  // 内存键值对存储管理
 
 const resolve = file => path.resolve(__dirname, file);
-const opn = require('opn');
+// const opn = require('opn');
 const { uploadPicture } = require('./utils/upload');
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -124,23 +124,24 @@ function render(ctx, resolve) {
     }
   }
 
-  // if(req.url == '/' || req.url == '/index'){
-  (async () => {
-    let error = false;
-    const html = await readFile(path.join(__dirname, './dist/index.html'), (err) => {
-      if (err) error = true;
-    });
-    if (error) {
-      return handleError(res);
-    }
-    ctx.body = html;
-    if (cacheable) {
-      microCache.set(req.url, html);
-    }
-    console.log(`整个服务端渲染的耗时 whole request: ${Date.now() - s}ms`);
-    resolve();
-  })();
-  // }
+  if (!/^\/api\//.test(req.url)) {
+    (async () => {
+      let error = false;
+      const html = await readFile(path.join(__dirname, './dist/index.html'), (err) => {
+        if (err) error = true;
+      });
+      if (error) {
+        return handleError(res);
+      }
+      ctx.body = html;
+      if (cacheable) {
+        microCache.set(req.url, html);
+      }
+      console.log(`整个服务端渲染的耗时 whole request: ${Date.now() - s}ms`);
+      resolve();
+      
+    })();
+  }
 }
 
 const userInfoController = require('./controllers/user-info');
@@ -204,7 +205,7 @@ router.post('/api/dashboard/uploadImg.json', async (ctx) => {
 
 if (isProd) {
   // router.get('/dashboard/', (ctx, next) => {
-  router.get('/', (ctx, next) => new Promise((resolve) => {
+  router.get('*', (ctx, next) => new Promise((resolve) => {
     render(ctx, resolve);
   }));
 } else {
